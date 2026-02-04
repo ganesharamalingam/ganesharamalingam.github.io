@@ -1,0 +1,1459 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganesh AR | AI & GTM Catalyst | Business Development Leader</title>
+    <meta name="description" content="Results-driven business development leader specializing in AI solutions, GTM strategy, and creative storytelling across healthcare, life sciences, and medtech.">
+    <meta name="keywords" content="AI Product Lead, Business Development, Healthcare AI, GTM Strategy, Enterprise AI, Presales">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ganesh AR - AI & GTM Catalyst">
+    <meta property="og:description" content="Building enterprise AI platforms that scale business strategy">
+    <meta property="og:type" content="website">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #0A0E27;
+            --bg-secondary: #151932;
+            --bg-card: rgba(21, 25, 50, 0.6);
+            --accent-blue: #00D4FF;
+            --accent-purple: #8B5CF6;
+            --accent-pink: #EC4899;
+            --text-primary: #E2E8F0;
+            --text-secondary: #94A3B8;
+            --text-muted: #64748B;
+            --border-color: rgba(148, 163, 184, 0.1);
+            --gradient-1: linear-gradient(135deg, #00D4FF 0%, #8B5CF6 100%);
+            --gradient-2: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+            --shadow-glow: 0 0 40px rgba(0, 212, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Particle Background */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--accent-blue);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            color: var(--accent-purple);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero h1 .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .typing-text {
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            font-weight: 500;
+            margin-bottom: 3rem;
+            min-height: 30px;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            color: var(--accent-blue);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        /* Pillars Section */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pillar-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .pillar-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pillar-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pillar-card:nth-child(2) .pillar-icon {
+            background: var(--gradient-2);
+        }
+
+        .pillar-card:nth-child(3) .pillar-icon {
+            background: linear-gradient(135deg, #EC4899 0%, #F59E0B 100%);
+        }
+
+        .pillar-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pillar-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* AI Lab Section */
+        .ai-lab {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-glow);
+            border-color: var(--accent-blue);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(16, 185, 129, 0.2);
+            color: #10B981;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-status.poc {
+            background: rgba(245, 158, 11, 0.2);
+            color: #F59E0B;
+        }
+
+        .project-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tagline {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .project-body {
+            padding: 2rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.4rem 0.8rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--accent-purple);
+            font-weight: 500;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s;
+        }
+
+        .project-link:hover {
+            gap: 1rem;
+        }
+
+        /* Timeline Section */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient-1);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+        }
+
+        .timeline-date {
+            color: var(--accent-blue);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-role {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-location {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-highlights {
+            list-style: none;
+        }
+
+        .timeline-highlights li {
+            color: var(--text-secondary);
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .timeline-highlights li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .skill-category h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-blue);
+        }
+
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background: rgba(148, 163, 184, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 10px;
+            transition: width 1s ease-out;
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cert-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .cert-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--bg-secondary);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .contact-info h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-method:hover {
+            border-color: var(--accent-blue);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .cta-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .cta-card:hover {
+            border-color: var(--accent-blue);
+            transform: translateX(-5px);
+        }
+
+        .cta-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 1rem;
+            }
+
+            .timeline-item {
+                padding-left: 2rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-purple);
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Background -->
+    <div id="particles"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">GA</div>
+            <ul id="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#pillars">What I Do</a></li>
+                <li><a href="#ai-lab">AI Lab</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Connect</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">🚀 Available for Consulting & Strategic Partnerships</div>
+                <h1>
+                    From Strategy to<br>
+                    <span class="gradient-text">Shipped AI</span>
+                </h1>
+                <p class="subtitle">Business Development Leader | AI Product Architect | Creative Catalyst</p>
+                <div class="typing-text" id="typing-text"></div>
+                <div class="hero-cta">
+                    <a href="#contact" class="btn btn-primary">Let's Build Something ⚡</a>
+                    <a href="#ai-lab" class="btn btn-secondary">View AI Projects →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about fade-in">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">About</div>
+                <h2 class="section-title">Building AI That Scales Business</h2>
+            </div>
+            <div class="about-content">
+                <p>
+                    Most BD professionals talk about AI. I <span class="highlight">build and ship it</span>.
+                </p>
+                <p>
+                    With <span class="highlight">16+ years</span> orchestrating strategic pursuits across healthcare, life sciences, and medtech, I've evolved from driving multi-million dollar deals to <span class="highlight">architecting enterprise AI platforms</span> that bridge strategy and execution.
+                </p>
+                <p>
+                    My approach is uncommon: blend <span class="highlight">presales mastery</span> with <span class="highlight">hands-on AI development</span> and wrap it in <span class="highlight">creative storytelling</span>. I don't just position solutions—I prototype them, ship them, and scale them.
+                </p>
+                <p>
+                    From leading Infinite's enterprise AI platform (SENZAI) to winning hackathons with production-ready AI screeners, I operate where <span class="highlight">business strategy meets technical execution</span>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pillars Section -->
+    <section id="pillars" class="pillars fade-in">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">What I Do</div>
+                <h2 class="section-title">Three Forces, One Vision</h2>
+            </div>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon">🎯</div>
+                    <h3>Presales Leadership</h3>
+                    <p>From opportunity qualification to proposal delivery—I combine strategic foresight with hands-on solutioning across healthcare, life sciences, and medtech domains. Full-cycle pursuit management that wins.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">🤖</div>
+                    <h3>AI & GTM Catalyst</h3>
+                    <p>Not just talking AI—building it. From enterprise platforms to production-ready prototypes, I blend hands-on development with scalable GTM narratives. LLM stacks, rapid prototyping, and AI-driven workflows.</p>
+                </div>
+                <div class="pillar-card">
+                    <div class="pillar-icon">✨</div>
+                    <h3>Creative Edge</h3>
+                    <p>Design-led thinking that shapes pitch visuals, microsites, dashboards, and brand narratives. I turn complex tech into visual stories that differentiate and compel. Creative strategy meets execution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Lab Section -->
+    <section id="ai-lab" class="ai-lab fade-in">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">AI Lab</div>
+                <h2 class="section-title">Production AI, Not Prototypes</h2>
+                <p class="section-subtitle">Building enterprise-grade AI platforms that solve real business problems</p>
+            </div>
+            <div class="projects-grid">
+                <!-- SENZAI -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-status">LIVE</span>
+                        <h3>SENZAI</h3>
+                        <p class="project-tagline">Enterprise AI Platform</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            An enterprise AI platform that turns ideas into governed, build-ready solutions—bridging strategy, architecture, governance, and execution in one unified experience.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">LLM Orchestration</span>
+                            <span class="tech-tag">AI Governance</span>
+                            <span class="tech-tag">Enterprise Scale</span>
+                        </div>
+                        <a href="https://aistudio.b2bdigitalhub.com/" target="_blank" class="project-link">
+                            Explore Platform →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- AIDWISE -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-status">LIVE</span>
+                        <h3>AIDWISE</h3>
+                        <p class="project-tagline">Medicaid Eligibility Assistant</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Hackathon-winning, production-ready Medicaid screener with intelligent document understanding. AI-powered eligibility determination with OCR capabilities.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Healthcare AI</span>
+                            <span class="tech-tag">OCR</span>
+                            <span class="tech-tag">Document Intelligence</span>
+                        </div>
+                        <a href="https://clever-screener.preview.emergentagent.com/" target="_blank" class="project-link">
+                            View Demo →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- VIBRAND -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-status poc">POC</span>
+                        <h3>VIBRAND</h3>
+                        <p class="project-tagline">Creative AI Copilot</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Transform ideas into stunning slides, documents, and infographics instantly. Advanced AI creating professional-quality content that captivates audiences.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">GenAI</span>
+                            <span class="tech-tag">Design Automation</span>
+                            <span class="tech-tag">Content Creation</span>
+                        </div>
+                        <a href="https://creativecopilot.preview.emergentagent.com/" target="_blank" class="project-link">
+                            Try POC →
+                        </a>
+                    </div>
+                </div>
+
+                <!-- HYDROMONITOR -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <span class="project-status">LIVE</span>
+                        <h3>HYDROMONITOR</h3>
+                        <p class="project-tagline">Predictive IoT Platform</p>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-description">
+                            Hydropneumatic remote monitoring platform with AI-powered predictive engine. Targeted at OEMs with MQTT-enabled telemetry data and RMS integration.
+                        </p>
+                        <div class="project-tech">
+                            <span class="tech-tag">IoT + AI</span>
+                            <span class="tech-tag">Predictive Analytics</span>
+                            <span class="tech-tag">MQTT</span>
+                        </div>
+                        <a href="https://hydropred.preview.emergentagent.com/" target="_blank" class="project-link">
+                            View Platform →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience fade-in">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Experience</div>
+                <h2 class="section-title">16 Years of Strategic Impact</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Feb 2022 - Present</div>
+                    <div class="timeline-company">Infinite Computer Solutions</div>
+                    <div class="timeline-role">Director - Business Development / AI Product Lead</div>
+                    <div class="timeline-location">Remote</div>
+                    <p class="timeline-description">
+                        Orchestrating strategic pursuits across full-cycle proposal management—blending bid leadership, solution design, and creative impact to win and scale.
+                    </p>
+                    <ul class="timeline-highlights">
+                        <li>Lead Infinite's enterprise AI platform (SENZAI), developing reusable GenAI accelerators</li>
+                        <li>Spearhead GTM execution with ecosystem partners, enabling scalable co-owned pursuit models</li>
+                        <li>Champion creative strategy—from pitch design to positioning, infusing visual-first thinking</li>
+                        <li>Support internal CoE initiatives and client-facing AI adoption roadmaps</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 2018 - Dec 2021</div>
+                    <div class="timeline-company">Self-Employed</div>
+                    <div class="timeline-role">Business Strategy & Operations</div>
+                    <p class="timeline-description">
+                        Engaged in freelance consulting and managed family business operations, blending sales, design, and brand strategy support.
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Apr 2008 - Mar 2018</div>
+                    <div class="timeline-company">Cognizant</div>
+                    <div class="timeline-role">Senior Business Analyst - Business Development</div>
+                    <div class="timeline-location">Montreal, Mumbai, Chennai</div>
+                    <p class="timeline-description">
+                        Progressively advanced through presales and consulting roles across Life Sciences and Medical Devices practices.
+                    </p>
+                    <ul class="timeline-highlights">
+                        <li>Anchored pursuit strategy for major medical device clients with market-specific narratives</li>
+                        <li>Built domain-aligned presales assets including frameworks, pitch decks, and value narratives</li>
+                        <li>Stationed onsite for critical client engagements; instrumental in offshore delivery setup</li>
+                        <li>Supported Managed Markets CoE, crafting promotional tools and analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills fade-in">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Skills</div>
+                <h2 class="section-title">Technical & Strategic Arsenal</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>AI & Technology</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>LLM Stacks & GenAI</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Rapid Prototyping</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Copilot Studio</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Business Strategy</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>GTM Strategy</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Presales & Solutioning</span>
+                            <span>98%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 98%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Partner Enablement</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Creative & Analytics</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Visual Storytelling</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Power BI & Dashboards</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Market Research</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Domain Expertise</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Healthcare & Life Sciences</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>MedTech Solutions</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Enterprise AI Adoption</span>
+                            <span>92%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 92%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="certifications fade-in">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Certifications</div>
+                <h2 class="section-title">Recognized Expertise</h2>
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-icon">☁️</div>
+                    <h3>Azure AI-900</h3>
+                    <p>Microsoft Certified</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🌐</div>
+                    <h3>AWS Accredited</h3>
+                    <p>Sales Partner</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🎯</div>
+                    <h3>Google Cloud</h3>
+                    <p>Sales Credential</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact fade-in">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Let's Connect</div>
+                <h2 class="section-title">Ready to Build Something Exceptional?</h2>
+                <p class="section-subtitle">Whether you need strategic consulting, AI solutioning, or partnership opportunities</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Multiple Ways to Engage</h3>
+                    <p>I work with enterprises looking to scale their AI capabilities, startups needing strategic GTM execution, and teams that value the intersection of business and technology.</p>
+                    <div class="contact-methods">
+                        <a href="mailto:ganesharamalingam@gmail.com" class="contact-method">
+                            <span class="contact-icon">✉️</span>
+                            <span>ganesharamalingam@gmail.com</span>
+                        </a>
+                        <a href="tel:+919840834767" class="contact-method">
+                            <span class="contact-icon">📱</span>
+                            <span>+91 98408 34767</span>
+                        </a>
+                        <a href="https://linkedin.com/in/ganesh-a-r-" target="_blank" class="contact-method">
+                            <span class="contact-icon">💼</span>
+                            <span>LinkedIn Profile</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="cta-buttons">
+                    <div class="cta-card">
+                        <h4>🤝 Consulting Inquiry</h4>
+                        <p>Need strategic AI implementation or presales leadership?</p>
+                        <a href="mailto:ganesharamalingam@gmail.com?subject=Consulting Inquiry" class="btn btn-primary">Get In Touch</a>
+                    </div>
+                    <div class="cta-card">
+                        <h4>💼 Career Opportunities</h4>
+                        <p>Looking for an AI & GTM catalyst for your team?</p>
+                        <a href="mailto:ganesharamalingam@gmail.com?subject=Career Opportunity" class="btn btn-secondary">Let's Talk</a>
+                    </div>
+                    <div class="cta-card">
+                        <h4>🚀 Partnership & Collaboration</h4>
+                        <p>Exploring AI innovation or ecosystem partnerships?</p>
+                        <a href="mailto:ganesharamalingam@gmail.com?subject=Partnership Inquiry" class="btn btn-secondary">Connect</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://linkedin.com/in/ganesh-a-r-" target="_blank" title="LinkedIn">💼</a>
+                <a href="mailto:ganesharamalingam@gmail.com" title="Email">✉️</a>
+                <a href="tel:+919840834767" title="Phone">📱</a>
+            </div>
+            <p>&copy; 2024 Ganesh AR. Building the future, one solution at a time.</p>
+            <p style="margin-top: 1rem; font-size: 0.85rem;">🚀 US B1 Visa Valid till 2034 | Available for Global Opportunities</p>
+        </div>
+    </footer>
+
+    <script>
+        // Typing Animation
+        const phrases = [
+            "Healthcare AI Solutions 🏥",
+            "Enterprise Platform Architect 🏗️",
+            "Presales Strategy Leader 🎯",
+            "Creative Storyteller ✨",
+            "Production AI Builder 🤖",
+            "MedTech Innovation 💊"
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing-text');
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const pauseTime = 2000;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                setTimeout(() => isDeleting = true, pauseTime);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+            }
+
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(type, speed);
+        }
+
+        // Start typing animation
+        setTimeout(type, 1000);
+
+        // Particle Background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            if (menu.style.display === 'flex') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'flex';
+                menu.style.flexDirection = 'column';
+                menu.style.position = 'absolute';
+                menu.style.top = '100%';
+                menu.style.left = '0';
+                menu.style.right = '0';
+                menu.style.background = 'var(--bg-primary)';
+                menu.style.padding = '2rem';
+                menu.style.borderTop = '1px solid var(--border-color)';
+            }
+        }
+
+        // Skill Bar Animation
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.skill-progress');
+                    progressBars.forEach(bar => {
+                        bar.style.width = bar.style.width;
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skills-grid').forEach(el => skillObserver.observe(el));
+
+        // Add active nav link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+```
+
+---
