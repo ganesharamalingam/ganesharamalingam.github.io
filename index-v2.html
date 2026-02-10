@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ganesh AR | I Don't Pitch AI. I Ship It.</title>
-    <meta name="description" content="Business development leader turned AI builder. 16+ years of strategy. 4 shipped AI products. Breaking out of the norm.">
+    <meta name="description" content="Business development leader turned AI builder. 16+ years of strategy. 5 shipped AI products. Breaking out of the norm.">
     <meta property="og:title" content="Ganesh AR - I Don't Pitch AI. I Ship It.">
     <meta property="og:description" content="16+ years of BD strategy meets hands-on AI building. Enterprise platforms, healthcare AI, and creative technology.">
     <meta property="og:type" content="website">
@@ -188,6 +188,11 @@
             height: 2px;
             background: var(--text-white);
             transition: all 0.3s;
+        }
+
+        /* Mobile Nav - hidden by default on desktop */
+        .mobile-nav {
+            display: none;
         }
 
         /* Hero */
@@ -521,10 +526,28 @@
             align-items: flex-end;
             margin-bottom: 4rem;
         }
+        .project-count {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 8rem;
+            font-weight: 700;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.15;
+            position: absolute;
+            right: 0;
+            top: -1rem;
+        }
+        .projects-header > div:first-child {
+            position: relative;
+        }
         .project-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
+            counter-reset: project;
         }
         .project-card {
             background: var(--glass-bg);
@@ -533,7 +556,19 @@
             overflow: hidden;
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
-            group: true;
+            counter-increment: project;
+        }
+        .project-visual::after {
+            content: '0' counter(project);
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            opacity: 0.25;
+            color: var(--text-white);
+            letter-spacing: 2px;
         }
         .project-card:hover {
             border-color: rgba(0, 240, 255, 0.15);
@@ -575,6 +610,9 @@
         .project-card:nth-child(4) .project-visual::before {
             background: linear-gradient(135deg, var(--neon-orange), var(--neon-cyan));
         }
+        .project-card:nth-child(5) .project-visual::before {
+            background: linear-gradient(135deg, #10b981, var(--neon-cyan));
+        }
         .pv-logo {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 3rem;
@@ -587,6 +625,7 @@
         .project-card:nth-child(2) .pv-logo { color: var(--neon-pink); }
         .project-card:nth-child(3) .pv-logo { color: var(--neon-purple); }
         .project-card:nth-child(4) .pv-logo { color: var(--neon-orange); }
+        .project-card:nth-child(5) .pv-logo { color: #10b981; }
 
         .project-info {
             padding: 2.5rem;
@@ -749,50 +788,74 @@
         .skills {
             background: var(--bg-void);
         }
-        .skills-layout {
+        .skills-cloud {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6rem;
+            gap: 2.5rem;
             margin-top: 4rem;
         }
-        .skill-group {
-            margin-bottom: 3rem;
+        .skill-category-block {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s;
         }
-        .skill-group-title {
+        .skill-category-block:hover {
+            border-color: rgba(0, 240, 255, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        .skill-cat-title {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.75rem;
-            color: var(--neon-cyan);
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             padding-bottom: 0.75rem;
             border-bottom: 1px solid var(--glass-border);
-        }
-        .skill-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
-        }
-        .skill-name {
-            font-size: 0.95rem;
             color: var(--text-dim);
         }
-        .skill-bar-wrap {
-            width: 120px;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 2px;
-            overflow: hidden;
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
         }
-        .skill-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
-            border-radius: 2px;
-            width: 0;
-            transition: width 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.3s;
+            cursor: default;
         }
+        .skill-tag:hover {
+            transform: translateY(-2px);
+        }
+        .tag-cyan {
+            background: rgba(0, 240, 255, 0.08);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            color: var(--neon-cyan);
+        }
+        .tag-cyan:hover { background: rgba(0, 240, 255, 0.15); box-shadow: 0 4px 20px rgba(0, 240, 255, 0.15); }
+        .tag-purple {
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            color: var(--neon-purple);
+        }
+        .tag-purple:hover { background: rgba(168, 85, 247, 0.15); box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15); }
+        .tag-pink {
+            background: rgba(244, 63, 142, 0.08);
+            border: 1px solid rgba(244, 63, 142, 0.2);
+            color: var(--neon-pink);
+        }
+        .tag-pink:hover { background: rgba(244, 63, 142, 0.15); box-shadow: 0 4px 20px rgba(244, 63, 142, 0.15); }
+        .tag-orange {
+            background: rgba(255, 107, 53, 0.08);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            color: var(--neon-orange);
+        }
+        .tag-orange:hover { background: rgba(255, 107, 53, 0.15); box-shadow: 0 4px 20px rgba(255, 107, 53, 0.15); }
 
         /* Certifications */
         .certs {
@@ -1012,7 +1075,7 @@
         @media (max-width: 1024px) {
             .manifesto-grid { grid-template-columns: 1fr; gap: 3rem; }
             .project-card:first-child .project-inner { grid-template-columns: 1fr; }
-            .skills-layout { grid-template-columns: 1fr; gap: 0; }
+            .skills-cloud { grid-template-columns: 1fr; gap: 1.5rem; }
             .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
         }
 
@@ -1111,7 +1174,7 @@
             </h1>
             <p class="hero-subtitle">
                 <strong>16 years</strong> of enterprise BD strategy.
-                <strong>4 AI products</strong> shipped to production.
+                <strong>5 AI products</strong> shipped to production.
                 One mission: build what others only present.
             </p>
             <div class="hero-actions">
@@ -1130,22 +1193,18 @@
         <div class="ticker-track">
             <div class="stat-item"><span class="stat-number">16+</span><span class="stat-label">Years in Enterprise</span></div>
             <span class="stat-divider">/</span>
-            <div class="stat-item"><span class="stat-number">4</span><span class="stat-label">AI Products Shipped</span></div>
+            <div class="stat-item"><span class="stat-number">5</span><span class="stat-label">AI Products Shipped</span></div>
             <span class="stat-divider">/</span>
             <div class="stat-item"><span class="stat-number">3</span><span class="stat-label">Cloud Certifications</span></div>
-            <span class="stat-divider">/</span>
-            <div class="stat-item"><span class="stat-number">10+</span><span class="stat-label">Enterprise Clients</span></div>
             <span class="stat-divider">/</span>
             <div class="stat-item"><span class="stat-number">HLS</span><span class="stat-label">Domain Expert</span></div>
             <span class="stat-divider">/</span>
             <!-- Duplicate for seamless loop -->
             <div class="stat-item"><span class="stat-number">16+</span><span class="stat-label">Years in Enterprise</span></div>
             <span class="stat-divider">/</span>
-            <div class="stat-item"><span class="stat-number">4</span><span class="stat-label">AI Products Shipped</span></div>
+            <div class="stat-item"><span class="stat-number">5</span><span class="stat-label">AI Products Shipped</span></div>
             <span class="stat-divider">/</span>
             <div class="stat-item"><span class="stat-number">3</span><span class="stat-label">Cloud Certifications</span></div>
-            <span class="stat-divider">/</span>
-            <div class="stat-item"><span class="stat-number">10+</span><span class="stat-label">Enterprise Clients</span></div>
             <span class="stat-divider">/</span>
             <div class="stat-item"><span class="stat-number">HLS</span><span class="stat-label">Domain Expert</span></div>
             <span class="stat-divider">/</span>
@@ -1201,7 +1260,8 @@
             <div class="projects-header">
                 <div>
                     <div class="section-label reveal">// ai lab</div>
-                    <div class="section-title reveal">Production AI,<br>Not Slide Decks.</div>
+                    <div class="section-title reveal">Shipped &amp; Live.<br>Not Slide Decks.</div>
+                    <div class="project-count">05</div>
                 </div>
                 <div class="section-desc reveal">Real platforms solving real problems. Every one of these was conceived, architected, and shipped.</div>
             </div>
@@ -1222,7 +1282,7 @@
                                 <span class="tech-pill">AI Governance</span>
                                 <span class="tech-pill">Enterprise Scale</span>
                             </div>
-                            <a href="https://aistudio.b2bdigitalhub.com/" target="_blank" rel="noopener" class="project-link">Explore Platform <span class="arrow">&rarr;</span></a>
+                            <a href="https://factory-studio.emergent.host/" target="_blank" rel="noopener" class="project-link">Explore Platform <span class="arrow">&rarr;</span></a>
                         </div>
                     </div>
                 </div>
@@ -1283,6 +1343,25 @@
                         <a href="https://hydropred.preview.emergentagent.com/" target="_blank" rel="noopener" class="project-link">View Platform <span class="arrow">&rarr;</span></a>
                     </div>
                 </div>
+
+                <!-- PUMP ADVISOR -->
+                <div class="project-card reveal reveal-delay-4">
+                    <div class="project-visual">
+                        <div class="pv-logo">PUMP AI</div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-status-badge status-live">Live</span>
+                        <h3>Pump Advisor</h3>
+                        <div class="project-tagline">Intelligent Pump Selection</div>
+                        <p class="project-desc">AI-driven pump decision system for accurate, real-world selection&mdash;the way an expert shop advisor would. Smart recommendations backed by domain intelligence.</p>
+                        <div class="project-tech-stack">
+                            <span class="tech-pill">Domain AI</span>
+                            <span class="tech-pill">Expert Systems</span>
+                            <span class="tech-pill">Industrial</span>
+                        </div>
+                        <a href="https://pumpai-advisor.preview.emergentagent.com/" target="_blank" rel="noopener" class="project-link">Try Advisor <span class="arrow">&rarr;</span></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1339,34 +1418,46 @@
         <div class="section-container">
             <div class="section-label reveal">// capabilities</div>
             <div class="section-title reveal">Where Strategy<br>Meets Execution.</div>
-            <div class="skills-layout">
-                <div>
-                    <div class="skill-group reveal">
-                        <div class="skill-group-title">AI & Technology</div>
-                        <div class="skill-row"><span class="skill-name">LLM Stacks & GenAI</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="95"></div></div></div>
-                        <div class="skill-row"><span class="skill-name">Rapid Prototyping</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="90"></div></div></div>
-                        <div class="skill-row"><span class="skill-name">Copilot Studio</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="85"></div></div></div>
-                        <div class="skill-row"><span class="skill-name">AI Governance</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="88"></div></div></div>
-                    </div>
-                    <div class="skill-group reveal">
-                        <div class="skill-group-title">Business Strategy</div>
-                        <div class="skill-row"><span class="skill-name">GTM Strategy</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="95"></div></div></div>
-                        <div class="skill-row"><span class="skill-name">Presales & Solutioning</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="98"></div></div></div>
-                        <div class="skill-row"><span class="skill-name">Partner Enablement</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="90"></div></div></div>
+            <div class="skills-cloud">
+                <div class="skill-category-block reveal">
+                    <h3 class="skill-cat-title">AI &amp; Technology</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag tag-cyan">LLM Stacks &amp; GenAI</span>
+                        <span class="skill-tag tag-cyan">Rapid Prototyping</span>
+                        <span class="skill-tag tag-cyan">Copilot Studio</span>
+                        <span class="skill-tag tag-cyan">AI Governance</span>
+                        <span class="skill-tag tag-cyan">Prompt Engineering</span>
+                        <span class="skill-tag tag-cyan">AI Architecture</span>
                     </div>
                 </div>
-                <div>
-                    <div class="skill-group reveal">
-                        <div class="skill-group-title">Creative & Analytics</div>
-                        <div class="skill-row"><span class="skill-name">Visual Storytelling</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="95"></div></div></div>
-                        <div class="skill-row"><span class="skill-name">Power BI & Dashboards</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="85"></div></div></div>
-                        <div class="skill-row"><span class="skill-name">Market Research</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="90"></div></div></div>
+                <div class="skill-category-block reveal reveal-delay-1">
+                    <h3 class="skill-cat-title">Business Strategy</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag tag-purple">GTM Strategy</span>
+                        <span class="skill-tag tag-purple">Presales &amp; Solutioning</span>
+                        <span class="skill-tag tag-purple">Partner Enablement</span>
+                        <span class="skill-tag tag-purple">Pursuit Management</span>
+                        <span class="skill-tag tag-purple">Proposal Leadership</span>
                     </div>
-                    <div class="skill-group reveal">
-                        <div class="skill-group-title">Domain Expertise</div>
-                        <div class="skill-row"><span class="skill-name">Healthcare & Life Sciences</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="95"></div></div></div>
-                        <div class="skill-row"><span class="skill-name">MedTech Solutions</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="90"></div></div></div>
-                        <div class="skill-row"><span class="skill-name">Enterprise AI Adoption</span><div class="skill-bar-wrap"><div class="skill-bar-fill" data-width="92"></div></div></div>
+                </div>
+                <div class="skill-category-block reveal reveal-delay-2">
+                    <h3 class="skill-cat-title">Creative &amp; Analytics</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag tag-pink">Visual Storytelling</span>
+                        <span class="skill-tag tag-pink">Power BI &amp; Dashboards</span>
+                        <span class="skill-tag tag-pink">Market Research</span>
+                        <span class="skill-tag tag-pink">Pitch Design</span>
+                        <span class="skill-tag tag-pink">Brand Narratives</span>
+                    </div>
+                </div>
+                <div class="skill-category-block reveal reveal-delay-3">
+                    <h3 class="skill-cat-title">Domain Expertise</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag tag-orange">Healthcare &amp; Life Sciences</span>
+                        <span class="skill-tag tag-orange">MedTech Solutions</span>
+                        <span class="skill-tag tag-orange">Enterprise AI Adoption</span>
+                        <span class="skill-tag tag-orange">Managed Markets</span>
+                        <span class="skill-tag tag-orange">Medical Devices</span>
                     </div>
                 </div>
             </div>
@@ -1679,21 +1770,6 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-        // ============================================
-        // SKILL BAR ANIMATION
-        // ============================================
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-                        bar.style.width = bar.dataset.width + '%';
-                    });
-                }
-            });
-        }, { threshold: 0.2 });
-
-        document.querySelectorAll('.skill-group').forEach(el => skillObserver.observe(el));
 
         // ============================================
         // NAV SCROLL EFFECT
