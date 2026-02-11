@@ -202,11 +202,49 @@
             align-items: center;
             position: relative;
             z-index: 1;
-            padding: 0 3rem;
+            padding: 6rem 3rem 0;
+        }
+        .hero-layout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+            width: 100%;
+            max-width: 1200px;
         }
         .hero-content {
-            max-width: 900px;
+            max-width: 700px;
             position: relative;
+        }
+        .hero-photo {
+            flex-shrink: 0;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 2px solid var(--glass-border);
+            overflow: hidden;
+            position: relative;
+            opacity: 0;
+            animation: fadeUp 0.8s 1.1s forwards;
+        }
+        .hero-photo::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
+            z-index: -1;
+            animation: rotateGlow 4s linear infinite;
+        }
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .hero-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
         }
         .hero-tag {
             display: inline-flex;
@@ -650,6 +688,11 @@
             color: #f59e0b;
             border: 1px solid rgba(245, 158, 11, 0.3);
         }
+        .status-hackathon {
+            background: rgba(168, 85, 247, 0.15);
+            color: #a855f7;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
         .project-info h3 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.6rem;
@@ -737,6 +780,22 @@
         }
         .timeline-entry:nth-child(2)::before { border-color: var(--neon-purple); box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
         .timeline-entry:nth-child(3)::before { border-color: var(--neon-pink); box-shadow: 0 0 20px rgba(244, 63, 142, 0.3); }
+        .timeline-entry:nth-child(4)::before { border-color: var(--neon-orange); box-shadow: 0 0 20px rgba(255, 107, 53, 0.3); }
+        .timeline-entry:nth-child(5)::before { border-color: #10b981; box-shadow: 0 0 20px rgba(16, 185, 129, 0.3); }
+
+        .te-chapter {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--neon-cyan);
+            margin-bottom: 0.3rem;
+            opacity: 0.6;
+        }
+        .timeline-entry:nth-child(2) .te-chapter { color: var(--neon-purple); }
+        .timeline-entry:nth-child(3) .te-chapter { color: var(--neon-pink); }
+        .timeline-entry:nth-child(4) .te-chapter { color: var(--neon-orange); }
 
         .te-period {
             font-family: 'JetBrains Mono', monospace;
@@ -747,6 +806,7 @@
         }
         .timeline-entry:nth-child(2) .te-period { color: var(--neon-purple); }
         .timeline-entry:nth-child(3) .te-period { color: var(--neon-pink); }
+        .timeline-entry:nth-child(4) .te-period { color: var(--neon-orange); }
 
         .te-company {
             font-family: 'Space Grotesk', sans-serif;
@@ -1112,8 +1172,11 @@
             .mobile-nav a:hover { color: var(--neon-cyan); }
 
             section { padding: 5rem 1.5rem; }
-            .hero { padding: 0 1.5rem; }
+            .hero { padding: 6rem 1.5rem 0; }
+            .hero-layout { flex-direction: column; text-align: center; gap: 2rem; }
+            .hero-photo { width: 180px; height: 180px; order: -1; }
             .hero h1 { letter-spacing: -1px; }
+            .hero-actions { justify-content: center; }
 
             .project-grid { grid-template-columns: 1fr; }
             .project-card:first-child { grid-column: 1; }
@@ -1162,24 +1225,27 @@
 
     <!-- Hero -->
     <section class="hero">
-        <div class="hero-content">
-            <div class="hero-tag">
-                <span class="pulse"></span>
-                Open to Consulting & Partnerships
+        <div class="hero-layout">
+            <div class="hero-content">
+                <div class="hero-tag">
+                    <span class="pulse"></span>
+                    Open to Consulting &amp; Partnerships
+                </div>
+                <h1>
+                    <span class="line">I Don't</span>
+                    <span class="line"><span class="accent">Pitch AI.</span></span>
+                    <span class="line">I <span class="stroke-text">Ship</span> It.</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Enterprise presales &amp; GTM leader with <strong>16 years</strong> across Healthcare, Life Sciences &amp; MedTech&mdash;now building and scaling <strong>AI platforms</strong> and products.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn-glitch">See What I've Built</a>
+                    <a href="#contact" class="btn-outline">Start a Conversation</a>
+                </div>
             </div>
-            <h1>
-                <span class="line">I Don't</span>
-                <span class="line"><span class="accent">Pitch AI.</span></span>
-                <span class="line">I <span class="stroke-text">Ship</span> It.</span>
-            </h1>
-            <p class="hero-subtitle">
-                <strong>16 years</strong> of enterprise BD strategy.
-                <strong>5 AI products</strong> shipped to production.
-                One mission: build what others only present.
-            </p>
-            <div class="hero-actions">
-                <a href="#projects" class="btn-glitch">See What I've Built</a>
-                <a href="#contact" class="btn-outline">Start a Conversation</a>
+            <div class="hero-photo">
+                <img src="Headshot.png" alt="Ganesh AR">
             </div>
         </div>
         <div class="hero-scroll-hint">
@@ -1215,17 +1281,17 @@
     <section id="manifesto" class="manifesto">
         <div class="section-container">
             <div class="section-label reveal">// who I am</div>
-            <div class="section-title reveal">Most BD leaders talk about AI.<br>I build and ship it.</div>
+            <div class="section-title reveal">16 years of GTM stories.<br>Now I build the products.</div>
             <div class="manifesto-grid">
                 <div class="manifesto-text reveal">
                     <p>
-                        With <span class="highlight">16+ years</span> orchestrating strategic pursuits across healthcare, life sciences, and medtech, I've moved beyond driving multi-million dollar deals to <span class="highlight">architecting enterprise AI platforms</span> that bridge strategy and execution.
+                        I spent <span class="highlight">a decade at Cognizant</span> in presales&mdash;crafting pursuit strategies, winning deals, and building the GTM narratives that enterprises buy into across healthcare, life sciences, and medtech.
                     </p>
                     <p>
-                        My approach breaks convention: blend <span class="highlight">presales mastery</span> with <span class="highlight">hands-on AI development</span> and wrap it in <span class="highlight">creative storytelling</span>. I don't just position solutions&mdash;I prototype them, ship them, and scale them.
+                        At Infinite, something shifted. I went from <span class="highlight">recommending solutions to owning them</span>. I saw the gap between what AI was promising and what was actually being delivered&mdash;and decided to close it myself.
                     </p>
                     <p>
-                        From leading an enterprise AI platform to winning hackathons with production-ready AI screeners, I operate where <span class="highlight">business strategy meets technical execution</span>.
+                        Now I blend <span class="highlight">presales instinct</span> with <span class="highlight">hands-on AI building</span> and <span class="highlight">creative storytelling</span>. The result: shipped platforms, not slide decks.
                     </p>
                 </div>
                 <div class="manifesto-visual">
@@ -1293,7 +1359,7 @@
                         <div class="pv-logo">AIDWISE</div>
                     </div>
                     <div class="project-info">
-                        <span class="project-status-badge status-live">Hackathon Winner</span>
+                        <span class="project-status-badge status-hackathon">Hackathon Winner</span>
                         <h3>AIDWISE</h3>
                         <div class="project-tagline">Medicaid Eligibility Assistant</div>
                         <p class="project-desc">Hackathon-winning, production-ready Medicaid screener with intelligent document understanding and OCR capabilities.</p>
@@ -1331,7 +1397,7 @@
                         <div class="pv-logo">HYDRO</div>
                     </div>
                     <div class="project-info">
-                        <span class="project-status-badge status-live">Live</span>
+                        <span class="project-status-badge status-poc">Proof of Concept</span>
                         <h3>HYDROMONITOR</h3>
                         <div class="project-tagline">Predictive IoT Platform</div>
                         <p class="project-desc">Hydropneumatic remote monitoring with AI-powered predictive engine. MQTT telemetry for OEM-targeted RMS integration.</p>
@@ -1344,15 +1410,15 @@
                     </div>
                 </div>
 
-                <!-- PUMP ADVISOR -->
+                <!-- FIND MY PUMP -->
                 <div class="project-card reveal reveal-delay-4">
                     <div class="project-visual">
-                        <div class="pv-logo">PUMP AI</div>
+                        <div class="pv-logo">FIND MY PUMP</div>
                     </div>
                     <div class="project-info">
-                        <span class="project-status-badge status-live">Live</span>
-                        <h3>Pump Advisor</h3>
-                        <div class="project-tagline">Intelligent Pump Selection</div>
+                        <span class="project-status-badge status-poc">Proof of Concept</span>
+                        <h3>Find My Pump</h3>
+                        <div class="project-tagline">AI Pump Selection Advisor</div>
                         <p class="project-desc">AI-driven pump decision system for accurate, real-world selection&mdash;the way an expert shop advisor would. Smart recommendations backed by domain intelligence.</p>
                         <div class="project-tech-stack">
                             <span class="tech-pill">Domain AI</span>
@@ -1370,43 +1436,64 @@
     <section id="experience" class="experience">
         <div class="section-container">
             <div class="section-label reveal">// the journey</div>
-            <div class="section-title reveal">16 Years of Building<br>What Others Only Present.</div>
+            <div class="section-title reveal">From GTM Stories<br>to Shipped Products.</div>
+            <p class="section-desc reveal" style="margin-bottom: 1rem;">After 16 years of building GTM stories for enterprises, I decided to build the products those stories were promising.</p>
             <div class="timeline-wrapper">
                 <div class="timeline-line"></div>
 
                 <div class="timeline-entry reveal">
+                    <div class="te-chapter">Chapter 3</div>
+                    <div class="te-period">2023 &mdash; Present</div>
+                    <div class="te-company">AI Builder</div>
+                    <div class="te-role">Shipping What I Used to Pitch</div>
+                    <ul class="te-highlights">
+                        <li>Built and shipped real platforms&mdash;SENZAI, AIDWISE, VIBRAND, HYDROMONITOR, Find My Pump</li>
+                        <li>Turned GTM insights into product decisions&mdash;AI became a tool for execution, not positioning</li>
+                        <li>Won a hackathon with a production-ready Medicaid eligibility screener (AIDWISE)</li>
+                        <li>AI finally dominates the work&mdash;but earned through years of understanding what enterprises actually need</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-entry reveal">
+                    <div class="te-chapter">Chapter 2</div>
                     <div class="te-period">2022 &mdash; Present</div>
                     <div class="te-company">Infinite Computer Solutions</div>
-                    <div class="te-role">Director &mdash; Business Development / AI Product Lead</div>
+                    <div class="te-role">Director &mdash; From Strategy to Ownership</div>
                     <div class="te-location">Remote</div>
                     <ul class="te-highlights">
-                        <li>Leading Infinite's enterprise AI platform (SENZAI), developing reusable GenAI accelerators</li>
-                        <li>Spearheading GTM execution with ecosystem partners, enabling scalable pursuit models</li>
-                        <li>Championing creative strategy&mdash;from pitch design to positioning with visual-first thinking</li>
-                        <li>Supporting internal CoE initiatives and client-facing AI adoption roadmaps</li>
+                        <li>Started in presales&mdash;full-cycle pursuit management, proposal leadership, partner GTM across healthcare</li>
+                        <li>Moved beyond slides into ownership&mdash;saw the gap between AI promises and real execution</li>
+                        <li>Took responsibility for outcomes, not just recommendations&mdash;conceived and built SENZAI</li>
+                        <li>Spearheading GTM execution with ecosystem partners across Microsoft, AWS, and Google</li>
+                        <li>Championing creative strategy&mdash;from pitch design to visual-first positioning</li>
                     </ul>
                 </div>
 
                 <div class="timeline-entry reveal">
+                    <div class="te-chapter">Interlude</div>
                     <div class="te-period">2018 &mdash; 2021</div>
                     <div class="te-company">Independent Ventures</div>
-                    <div class="te-role">Business Strategy & Operations</div>
+                    <div class="te-role">Business Strategy &amp; Operations</div>
                     <ul class="te-highlights">
-                        <li>Freelance consulting blending sales, design, and brand strategy support</li>
+                        <li>Freelance consulting&mdash;blending sales strategy, design, and brand narrative work</li>
                         <li>Managed family business operations with strategic and operational leadership</li>
+                        <li>Deepened the creative and visual storytelling instincts that now set my work apart</li>
                     </ul>
                 </div>
 
                 <div class="timeline-entry reveal">
+                    <div class="te-chapter">Chapter 1</div>
                     <div class="te-period">2008 &mdash; 2018</div>
                     <div class="te-company">Cognizant</div>
-                    <div class="te-role">Senior Business Analyst &mdash; Business Development</div>
+                    <div class="te-role">Presales &amp; Business Development &mdash; Life Sciences &amp; MedTech</div>
                     <div class="te-location">Montreal &bull; Mumbai &bull; Chennai</div>
                     <ul class="te-highlights">
-                        <li>Anchored pursuit strategy for major medical device clients with market-specific narratives</li>
-                        <li>Built domain-aligned presales assets&mdash;frameworks, pitch decks, and value narratives</li>
-                        <li>Stationed onsite for critical client engagements; instrumental in offshore delivery setup</li>
-                        <li>Supported Managed Markets CoE, crafting promotional tools and analytics</li>
+                        <li>A decade of presales&mdash;this is where the foundation was built</li>
+                        <li>Progressive roles across Life Sciences and Medical Devices practices</li>
+                        <li>Led pursuit strategy for major medical device clients&mdash;crafting the narratives that won deals</li>
+                        <li>Built presales frameworks, proposal templates, and value propositions from scratch</li>
+                        <li>Stationed onsite in Montreal for critical client engagements; set up offshore delivery models</li>
+                        <li>Supported Managed Markets CoE&mdash;built promotional tools, dashboards, and market analytics</li>
                     </ul>
                 </div>
             </div>
@@ -1420,44 +1507,43 @@
             <div class="section-title reveal">Where Strategy<br>Meets Execution.</div>
             <div class="skills-cloud">
                 <div class="skill-category-block reveal">
-                    <h3 class="skill-cat-title">AI &amp; Technology</h3>
+                    <h3 class="skill-cat-title">AI &amp; Emerging Tech</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag tag-cyan">LLM Stacks &amp; GenAI</span>
-                        <span class="skill-tag tag-cyan">Rapid Prototyping</span>
+                        <span class="skill-tag tag-cyan">GenAI &amp; LLM Platforms</span>
+                        <span class="skill-tag tag-cyan">AI Product Development</span>
                         <span class="skill-tag tag-cyan">Copilot Studio</span>
-                        <span class="skill-tag tag-cyan">AI Governance</span>
-                        <span class="skill-tag tag-cyan">Prompt Engineering</span>
-                        <span class="skill-tag tag-cyan">AI Architecture</span>
+                        <span class="skill-tag tag-cyan">Responsible AI &amp; Governance</span>
+                        <span class="skill-tag tag-cyan">Rapid Prototyping</span>
+                        <span class="skill-tag tag-cyan">AI-Powered Workflows</span>
                     </div>
                 </div>
                 <div class="skill-category-block reveal reveal-delay-1">
-                    <h3 class="skill-cat-title">Business Strategy</h3>
+                    <h3 class="skill-cat-title">Presales &amp; Business Development</h3>
                     <div class="skill-tags">
+                        <span class="skill-tag tag-purple">Full-Cycle Pursuit Management</span>
+                        <span class="skill-tag tag-purple">Solution Design &amp; Positioning</span>
                         <span class="skill-tag tag-purple">GTM Strategy</span>
-                        <span class="skill-tag tag-purple">Presales &amp; Solutioning</span>
-                        <span class="skill-tag tag-purple">Partner Enablement</span>
-                        <span class="skill-tag tag-purple">Pursuit Management</span>
-                        <span class="skill-tag tag-purple">Proposal Leadership</span>
+                        <span class="skill-tag tag-purple">Proposal &amp; RFP Leadership</span>
+                        <span class="skill-tag tag-purple">Partner &amp; Alliance Enablement</span>
                     </div>
                 </div>
                 <div class="skill-category-block reveal reveal-delay-2">
                     <h3 class="skill-cat-title">Creative &amp; Analytics</h3>
                     <div class="skill-tags">
                         <span class="skill-tag tag-pink">Visual Storytelling</span>
+                        <span class="skill-tag tag-pink">Pitch &amp; Deck Design</span>
                         <span class="skill-tag tag-pink">Power BI &amp; Dashboards</span>
-                        <span class="skill-tag tag-pink">Market Research</span>
-                        <span class="skill-tag tag-pink">Pitch Design</span>
-                        <span class="skill-tag tag-pink">Brand Narratives</span>
+                        <span class="skill-tag tag-pink">Market Intelligence</span>
+                        <span class="skill-tag tag-pink">Brand Narrative Design</span>
                     </div>
                 </div>
                 <div class="skill-category-block reveal reveal-delay-3">
                     <h3 class="skill-cat-title">Domain Expertise</h3>
                     <div class="skill-tags">
                         <span class="skill-tag tag-orange">Healthcare &amp; Life Sciences</span>
-                        <span class="skill-tag tag-orange">MedTech Solutions</span>
-                        <span class="skill-tag tag-orange">Enterprise AI Adoption</span>
-                        <span class="skill-tag tag-orange">Managed Markets</span>
-                        <span class="skill-tag tag-orange">Medical Devices</span>
+                        <span class="skill-tag tag-orange">Medical Devices &amp; MedTech</span>
+                        <span class="skill-tag tag-orange">Managed Markets &amp; Pharma</span>
+                        <span class="skill-tag tag-orange">Enterprise Digital Transformation</span>
                     </div>
                 </div>
             </div>
