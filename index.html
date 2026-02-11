@@ -1183,11 +1183,7 @@
             }
             .mobile-nav a:hover { color: var(--neon-cyan); }
 
-            section { padding: 5rem 1.5rem; }
-            .hero { padding: 5rem 1.5rem 2rem; }
-            .hero-photo { display: none; }
-            .hero-content { max-width: 100%; }
-            .hero h1 { letter-spacing: -1px; }
+            .hero { padding: 6rem 1.5rem 0; }
             .hero-scroll-hint { display: none; }
 
             .project-grid { grid-template-columns: 1fr; }
@@ -1198,37 +1194,16 @@
             .mv-card:nth-child(2):hover { transform: translateY(-4px); }
 
             .cert-row { flex-direction: column; }
-
-            .stats-ticker { padding: 2.5rem 0; }
-            .stat-number { font-size: 2.2rem; }
-            .stat-label { font-size: 0.7rem; }
-            .stat-divider { font-size: 1.2rem; }
-
-            .section-title { font-size: clamp(1.6rem, 5vw, 2.5rem); }
-            .section-desc { font-size: 0.95rem; }
-            .manifesto-text { font-size: 1rem; }
-
-            .pv-logo { font-size: 2rem; }
-            .project-info h3 { font-size: 1.3rem; }
-            .project-visual { min-height: 140px; padding: 2rem; }
-
-            .te-company { font-size: 1.4rem; }
-            .timeline-entry { padding-left: 2.5rem; margin-bottom: 3rem; }
-
-            .contact-left h3 { font-size: 1.6rem; }
-
             .cursor-dot, .cursor-ring { display: none; }
         }
 
         @media (max-width: 400px) {
-            .hero { padding: 4.5rem 1rem 0; }
-            .hero h1 { font-size: 2rem; }
-            .hero-subtitle { font-size: 0.9rem; }
-            .hero-actions { flex-direction: column; align-items: stretch; }
+            .hero { padding: 5rem 1rem 0; }
+            .hero h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
+            section { padding: 4rem 1rem; }
+            .hero-actions { flex-direction: column; }
             .hero-actions .btn-glitch,
             .hero-actions .btn-outline { text-align: center; }
-            section { padding: 4rem 1rem; }
-            .project-info { padding: 1.5rem; }
         }
     </style>
 </head>
