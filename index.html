@@ -218,10 +218,9 @@
         }
         .hero-photo {
             flex-shrink: 0;
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            border: 2px solid var(--glass-border);
+            width: 300px;
+            height: 380px;
+            border-radius: 12px;
             overflow: hidden;
             position: relative;
             opacity: 0;
@@ -230,21 +229,32 @@
         .hero-photo::before {
             content: '';
             position: absolute;
-            inset: -3px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink));
-            z-index: -1;
-            animation: rotateGlow 4s linear infinite;
+            inset: 0;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            z-index: 2;
+            pointer-events: none;
         }
-        @keyframes rotateGlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .hero-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(3, 0, 20, 0.6) 100%);
+            z-index: 1;
+            pointer-events: none;
+            border-radius: 12px;
         }
         .hero-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
+            object-position: center top;
+            border-radius: 12px;
+            filter: saturate(0.3) contrast(1.1) brightness(0.9);
+            transition: filter 0.5s;
+        }
+        .hero-photo:hover img {
+            filter: saturate(0.7) contrast(1.05) brightness(0.95);
         }
         .hero-tag {
             display: inline-flex;
@@ -1174,7 +1184,7 @@
             section { padding: 5rem 1.5rem; }
             .hero { padding: 6rem 1.5rem 0; }
             .hero-layout { flex-direction: column; text-align: center; gap: 2rem; }
-            .hero-photo { width: 180px; height: 180px; order: -1; }
+            .hero-photo { width: 200px; height: 260px; order: -1; }
             .hero h1 { letter-spacing: -1px; }
             .hero-actions { justify-content: center; }
 
@@ -1281,17 +1291,17 @@
     <section id="manifesto" class="manifesto">
         <div class="section-container">
             <div class="section-label reveal">// who I am</div>
-            <div class="section-title reveal">16 years of GTM stories.<br>Now I build the products.</div>
+            <div class="section-title reveal">Strategy Meets<br>Execution.</div>
             <div class="manifesto-grid">
                 <div class="manifesto-text reveal">
                     <p>
-                        I spent <span class="highlight">a decade at Cognizant</span> in presales&mdash;crafting pursuit strategies, winning deals, and building the GTM narratives that enterprises buy into across healthcare, life sciences, and medtech.
+                        With <span class="highlight">16+ years orchestrating strategic pursuits</span> across healthcare, life sciences, and medtech, I've moved beyond driving multi-million dollar deals to architecting enterprise AI platforms that bridge strategy and execution.
                     </p>
                     <p>
-                        At Infinite, something shifted. I went from <span class="highlight">recommending solutions to owning them</span>. I saw the gap between what AI was promising and what was actually being delivered&mdash;and decided to close it myself.
+                        My approach breaks convention: blend <span class="highlight">presales mastery</span> with <span class="highlight">hands-on AI development</span> and wrap it in <span class="highlight">creative storytelling</span>. I don't just position solutions&mdash;I prototype them, ship them, and scale them.
                     </p>
                     <p>
-                        Now I blend <span class="highlight">presales instinct</span> with <span class="highlight">hands-on AI building</span> and <span class="highlight">creative storytelling</span>. The result: shipped platforms, not slide decks.
+                        From leading an enterprise AI platform to winning hackathons with production-ready AI screeners, I operate where <span class="highlight">business strategy meets technical execution</span>.
                     </p>
                 </div>
                 <div class="manifesto-visual">
@@ -1399,8 +1409,8 @@
                     <div class="project-info">
                         <span class="project-status-badge status-poc">Proof of Concept</span>
                         <h3>HYDROMONITOR</h3>
-                        <div class="project-tagline">Predictive IoT Platform</div>
-                        <p class="project-desc">Hydropneumatic remote monitoring with AI-powered predictive engine. MQTT telemetry for OEM-targeted RMS integration.</p>
+                        <div class="project-tagline">Predictive IoT Platform &bull; Personal Initiative</div>
+                        <p class="project-desc">Hydropneumatic remote monitoring with AI-powered predictive engine. MQTT telemetry for OEM-targeted RMS integration. An independent venture outside the enterprise.</p>
                         <div class="project-tech-stack">
                             <span class="tech-pill">IoT + AI</span>
                             <span class="tech-pill">Predictive</span>
@@ -1418,8 +1428,8 @@
                     <div class="project-info">
                         <span class="project-status-badge status-poc">Proof of Concept</span>
                         <h3>Find My Pump</h3>
-                        <div class="project-tagline">AI Pump Selection Advisor</div>
-                        <p class="project-desc">AI-driven pump decision system for accurate, real-world selection&mdash;the way an expert shop advisor would. Smart recommendations backed by domain intelligence.</p>
+                        <div class="project-tagline">AI Pump Selection Advisor &bull; Personal Initiative</div>
+                        <p class="project-desc">AI-driven pump decision system for accurate, real-world selection&mdash;the way an expert shop advisor would. Smart recommendations backed by domain intelligence. Built independently as a passion project.</p>
                         <div class="project-tech-stack">
                             <span class="tech-pill">Domain AI</span>
                             <span class="tech-pill">Expert Systems</span>
@@ -1448,12 +1458,11 @@
                     <div class="te-role">Director &mdash; Presales, GTM &amp; AI Products</div>
                     <div class="te-location">Remote</div>
                     <ul class="te-highlights">
-                        <li>Started in presales&mdash;full-cycle pursuit management, proposal leadership, partner GTM across healthcare</li>
-                        <li>Spearheading GTM execution with ecosystem partners across Microsoft, AWS, and Google</li>
-                        <li>Championing creative strategy&mdash;from pitch design to visual-first positioning</li>
-                        <li>Evolved into AI product ownership&mdash;saw the gap between what AI promised and what was being delivered</li>
-                        <li>Conceived and built SENZAI, the enterprise AI platform now live in production</li>
-                        <li>Built AIDWISE (hackathon winner), VIBRAND, HYDROMONITOR, and Find My Pump&mdash;turning GTM insights into real products</li>
+                        <li>Full-cycle pursuit leadership, proposal ownership, and partner GTM across healthcare</li>
+                        <li>Ecosystem GTM execution with Microsoft, AWS, and Google Cloud partners</li>
+                        <li>Visual-first positioning and pitch strategy for complex enterprise deals</li>
+                        <li>Expanded into AI product ownership to close the gap between promise and delivery</li>
+                        <li>Conceived and built SENZAI&mdash;enterprise AI platform now live</li>
                     </ul>
                 </div>
 
