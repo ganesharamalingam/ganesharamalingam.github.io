@@ -1147,7 +1147,8 @@
             .project-card:first-child .project-inner { grid-template-columns: 1fr; }
             .skills-cloud { grid-template-columns: 1fr; gap: 1.5rem; }
             .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
-            .hero-photo { width: 240px; height: 300px; }
+            .hero-photo { display: none; }
+            .hero-content { max-width: 100%; }
         }
 
         @media (max-width: 768px) {
@@ -1183,35 +1184,10 @@
             .mobile-nav a:hover { color: var(--neon-cyan); }
 
             section { padding: 5rem 1.5rem; }
-            .hero { padding: 5rem 1.5rem 2rem; min-height: 100vh; display: flex; align-items: center; }
-            .hero-layout {
-                flex-direction: column;
-                text-align: center;
-                gap: 0;
-                align-items: center;
-                justify-content: center;
-            }
-            .hero-content {
-                max-width: 100%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .hero-tag { margin-bottom: 1.5rem; }
+            .hero { padding: 5rem 1.5rem 2rem; }
             .hero-photo { display: none; }
-            .hero h1 { letter-spacing: -1px; font-size: clamp(2.4rem, 10vw, 3.8rem); margin-bottom: 1.2rem; }
-            .hero-subtitle { font-size: 1.05rem; margin-bottom: 2rem; text-align: center; max-width: 90%; }
-            .hero-actions {
-                justify-content: center;
-                gap: 1rem;
-                width: 100%;
-                flex-direction: row;
-            }
-            .hero-actions .btn-glitch,
-            .hero-actions .btn-outline {
-                padding: 0.9rem 1.8rem;
-                font-size: 0.85rem;
-            }
+            .hero-content { max-width: 100%; }
+            .hero h1 { letter-spacing: -1px; }
             .hero-scroll-hint { display: none; }
 
             .project-grid { grid-template-columns: 1fr; }
