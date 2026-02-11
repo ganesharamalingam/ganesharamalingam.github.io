@@ -1183,35 +1183,35 @@
             .mobile-nav a:hover { color: var(--neon-cyan); }
 
             section { padding: 5rem 1.5rem; }
-            .hero { padding: 5rem 1.5rem 0; min-height: auto; }
+            .hero { padding: 5rem 1.5rem 2rem; min-height: 100vh; display: flex; align-items: center; }
             .hero-layout {
-                flex-direction: row;
-                flex-wrap: wrap;
-                text-align: left;
+                flex-direction: column;
+                text-align: center;
                 gap: 0;
-                align-items: flex-start;
+                align-items: center;
+                justify-content: center;
             }
-            .hero-content { max-width: 100%; order: 2; }
-            .hero-tag { margin-bottom: 1.2rem; }
-            .hero-photo {
-                width: 56px;
-                height: 56px;
-                border-radius: 50%;
-                order: 1;
-                margin-bottom: 1rem;
-                margin-right: 1rem;
+            .hero-content {
+                max-width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
-            .hero-photo::after { border-radius: 50%; background: none; }
-            .hero-photo::before { border-radius: 50%; border-color: rgba(0, 240, 255, 0.2); }
-            .hero-photo img {
-                border-radius: 50%;
-                filter: saturate(0.8) contrast(1.05) brightness(1);
+            .hero-tag { margin-bottom: 1.5rem; }
+            .hero-photo { display: none; }
+            .hero h1 { letter-spacing: -1px; font-size: clamp(2.4rem, 10vw, 3.8rem); margin-bottom: 1.2rem; }
+            .hero-subtitle { font-size: 1.05rem; margin-bottom: 2rem; text-align: center; max-width: 90%; }
+            .hero-actions {
+                justify-content: center;
+                gap: 1rem;
+                width: 100%;
+                flex-direction: row;
             }
-            .hero h1 { letter-spacing: -1px; font-size: clamp(2.2rem, 9vw, 3.5rem); }
-            .hero-subtitle { font-size: 1rem; margin-bottom: 1.5rem; }
-            .hero-actions { justify-content: flex-start; gap: 1rem; }
             .hero-actions .btn-glitch,
-            .hero-actions .btn-outline { padding: 0.8rem 1.5rem; font-size: 0.85rem; }
+            .hero-actions .btn-outline {
+                padding: 0.9rem 1.8rem;
+                font-size: 0.85rem;
+            }
             .hero-scroll-hint { display: none; }
 
             .project-grid { grid-template-columns: 1fr; }
