@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENZAI – Powering Infinite Services Delivery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #ffffff;
+            --bg-subtle: #f8fafc;
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --text-faint: #94a3b8;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --radius-sm: 10px;
+            /* Branch accent colors */
+            --c-studio: #2563eb;
+            --c-agents: #7c3aed;
+            --c-enablement: #db2777;
+            --c-client: #ea580c;
+            --c-branding: #059669;
+            --c-strategy: #d97706;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ─── HEADER ─── */
+        .page-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .breadcrumb-home {
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+        .breadcrumb-home:hover { color: var(--text-primary); }
+        .breadcrumb-sep {
+            color: var(--text-faint);
+            font-weight: 400;
+        }
+        .breadcrumb-current {
+            color: var(--text-primary);
+        }
+        .header-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        .btn-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+        .btn-icon:hover {
+            background: var(--bg-subtle);
+            border-color: var(--border-hover);
+            color: var(--text-primary);
+        }
+
+        /* ─── KEYBOARD HINT BAR ─── */
+        .hint-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border);
+            padding: 0.5rem 2rem;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--text-faint);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .hint-bar kbd {
+            display: inline-block;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 0.1rem 0.4rem;
+            font-size: 0.7rem;
+            margin-right: 0.25rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ─── HUB VIEW ─── */
+        .hub-view {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .hub-view.hidden {
+            display: none;
+        }
+
+        .hub-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .hub-title h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+        }
+        .hub-title h1 span {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hub-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        .branch-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cardIn 0.5s forwards;
+        }
+        .branch-card:nth-child(1) { animation-delay: 0.05s; }
+        .branch-card:nth-child(2) { animation-delay: 0.1s; }
+        .branch-card:nth-child(3) { animation-delay: 0.15s; }
+        .branch-card:nth-child(4) { animation-delay: 0.2s; }
+        .branch-card:nth-child(5) { animation-delay: 0.25s; }
+        .branch-card:nth-child(6) { animation-delay: 0.3s; }
+
+        @keyframes cardIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .branch-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+        .branch-card:hover::before { transform: scaleX(1); }
+        .branch-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+        .branch-card.visited .card-visited-dot {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            background: color-mix(in srgb, var(--accent) 10%, transparent);
+        }
+        .card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .card-visited-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity 0.3s;
+            flex-shrink: 0;
+        }
+        .card-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-count {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-faint);
+            letter-spacing: 0.5px;
+        }
+        .card-arrow {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-faint);
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .branch-card:hover .card-arrow {
+            background: var(--accent);
+            color: white;
+            transform: translateX(2px);
+        }
+
+        /* ─── BRANCH (DETAIL) VIEW ─── */
+        .branch-view {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 2rem 5rem;
+            display: none;
+        }
+        .branch-view.active {
+            display: block;
+            animation: fadeIn 0.35s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .branch-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .branch-header-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            background: color-mix(in srgb, var(--accent) 10%, transparent);
+        }
+        .branch-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+        .branch-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Collapsible items */
+        .item-group {
+            margin-bottom: 0.5rem;
+        }
+        .item-row {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--bg-card);
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: itemIn 0.35s forwards;
+        }
+        .item-row:nth-child(1) { animation-delay: 0.05s; }
+        .item-row:nth-child(2) { animation-delay: 0.1s; }
+        .item-row:nth-child(3) { animation-delay: 0.15s; }
+        .item-row:nth-child(4) { animation-delay: 0.2s; }
+        .item-row:nth-child(5) { animation-delay: 0.25s; }
+        .item-row:nth-child(6) { animation-delay: 0.3s; }
+        .item-row:nth-child(7) { animation-delay: 0.35s; }
+
+        @keyframes itemIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .item-row.expanded {
+            border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
+            box-shadow: var(--shadow-sm);
+        }
+
+        .item-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            gap: 0.75rem;
+            transition: background 0.2s;
+            user-select: none;
+        }
+        .item-header.leaf-header {
+            cursor: default;
+        }
+        .item-header:hover {
+            background: var(--bg-subtle);
+        }
+        .item-toggle {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: var(--bg-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--text-faint);
+            transition: all 0.25s;
+            flex-shrink: 0;
+        }
+        .item-row.expanded > .item-header .item-toggle {
+            background: color-mix(in srgb, var(--accent) 12%, transparent);
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+        .item-toggle.leaf {
+            background: transparent;
+            color: color-mix(in srgb, var(--accent) 50%, transparent);
+            font-size: 0.5rem;
+        }
+        .item-label {
+            flex: 1;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+        .item-label .detail {
+            display: block;
+            font-weight: 400;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
+        .item-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            background: color-mix(in srgb, var(--accent) 8%, transparent);
+            color: var(--accent);
+            flex-shrink: 0;
+            white-space: nowrap;
+        }
+
+        .item-children {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border-top: 0px solid var(--border);
+        }
+        .item-row.expanded > .item-children {
+            max-height: 1200px;
+            border-top-width: 1px;
+        }
+        .item-children-inner {
+            padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+        }
+
+        /* Nested children */
+        .child-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            padding: 0.6rem 0.75rem;
+            border-radius: 8px;
+            transition: background 0.15s;
+        }
+        .child-item:hover {
+            background: var(--bg-subtle);
+        }
+        .child-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: color-mix(in srgb, var(--accent) 40%, transparent);
+            margin-top: 0.45rem;
+            flex-shrink: 0;
+        }
+        .child-text {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .child-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .child-text .note {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-faint);
+            font-style: italic;
+            margin-top: 0.2rem;
+        }
+
+        /* ─── NAV DOTS (branch progress) ─── */
+        .nav-dots {
+            display: flex;
+            gap: 0.4rem;
+            align-items: center;
+        }
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border-hover);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-dot.visited { background: var(--text-faint); border-color: var(--text-faint); }
+        .nav-dot.current { background: var(--dot-color, var(--c-studio)); border-color: var(--dot-color, var(--c-studio)); transform: scale(1.2); }
+        .nav-dot:hover { border-color: var(--text-muted); }
+
+        /* ─── BACK BUTTON IN BRANCH VIEW ─── */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.4rem 0.75rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            transition: all 0.2s;
+            margin-bottom: 1.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+        .back-btn:hover {
+            background: var(--bg-subtle);
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+        }
+
+        /* ─── BRANCH NAVIGATION (prev/next) ─── */
+        .branch-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+        .branch-nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 0.6rem 1rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .branch-nav-btn:hover {
+            background: var(--bg-subtle);
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+        }
+        .branch-nav-btn .nav-label {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ─── EXPAND ALL TOGGLE ─── */
+        .branch-toolbar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 1rem;
+        }
+        .expand-all-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.78rem;
+            color: var(--text-faint);
+            cursor: pointer;
+            padding: 0.35rem 0.7rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            transition: all 0.2s;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .expand-all-btn:hover {
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+            border-color: var(--border-hover);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .card-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 640px) {
+            .card-grid { grid-template-columns: 1fr; }
+            .hub-title h1 { font-size: 1.75rem; }
+            .hub-subtitle { font-size: 0.95rem; }
+            .page-header { padding: 0.75rem 1rem; }
+            .hub-view { padding: 2rem 1rem 5rem; }
+            .branch-view { padding: 1.5rem 1rem 5rem; }
+            .hint-bar { display: none; }
+        }
+
+        /* ─── FULLSCREEN ─── */
+        body.is-fullscreen .page-header { display: none; }
+        body.is-fullscreen .hub-view { padding-top: 2rem; }
+        body.is-fullscreen .hint-bar { display: none; }
+
+        /* ─── PRINT-FRIENDLY ─── */
+        @media print {
+            .hint-bar, .page-header, .header-controls { display: none; }
+            .branch-card { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="page-header">
+        <nav class="breadcrumb" id="breadcrumb">
+            <span class="breadcrumb-home" id="bc-home" onclick="goHome()">SENZAI</span>
+            <span class="breadcrumb-sep" id="bc-sep" style="display:none">›</span>
+            <span class="breadcrumb-current" id="bc-current"></span>
+        </nav>
+        <div class="header-controls">
+            <div class="nav-dots" id="navDots"></div>
+            <button class="btn-icon" onclick="toggleFullscreen()" title="Fullscreen (F)">⛶</button>
+        </div>
+    </header>
+
+    <!-- HUB VIEW -->
+    <main class="hub-view" id="hubView">
+        <div class="hub-title">
+            <h1><span>SENZAI</span> – Strategy Overview</h1>
+        </div>
+        <p class="hub-subtitle">Powering Infinite Services Delivery &nbsp;·&nbsp; Click any area to explore</p>
+        <div class="card-grid" id="cardGrid"></div>
+    </main>
+
+    <!-- BRANCH VIEW -->
+    <main class="branch-view" id="branchView"></main>
+
+    <!-- KEYBOARD HINTS -->
+    <footer class="hint-bar">
+        <span><kbd>1</kbd>–<kbd>6</kbd> Jump to branch</span>
+        <span><kbd>Esc</kbd> Back to overview</span>
+        <span><kbd>←</kbd><kbd>→</kbd> Prev / Next branch</span>
+        <span><kbd>F</kbd> Fullscreen</span>
+    </footer>
+
+    <script>
+    // ─── MIND MAP DATA ───
+    const branches = [
+        {
+            id: 'studio',
+            title: 'SENZAI.Studio',
+            subtitle: 'Front end to SENZAI — Ideation to Building Agent Accelerators',
+            icon: '⚡',
+            color: 'var(--c-studio)',
+            children: [
+                {
+                    title: 'Phase 1: Migrate from Emergent to Infinite',
+                    badge: 'Mar 15, 2026',
+                    children: []
+                },
+                {
+                    title: 'Phase 2: Increase Accuracy / Train the Model',
+                    badge: 'May 2026',
+                    children: []
+                },
+                {
+                    title: 'Studio Migration & Build Team',
+                    detail: '6 FTE — 2 React Dev / 2 Node JS / 1 Manager / 1 Architect',
+                    children: [
+                        { text: 'Migration from Emergent / Infosys tooling' }
+                    ]
+                },
+                {
+                    title: 'Use Case: Agentic Development Framework',
+                    children: [
+                        { text: '<strong>3 FTE</strong> (AI Dev) — Target SDLC Sub-Agent Build Blueprint' },
+                        { text: '<strong>6 FTE</strong> (AI Dev) — Agentic AI Development Framework' }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'agents',
+            title: 'SENZAI.Agents',
+            subtitle: 'Gateway to Agentic AI based on Use Cases',
+            icon: '🤖',
+            color: 'var(--c-agents)',
+            children: [
+                {
+                    title: 'Functional Agentic AI Use Case Build',
+                    detail: 'Based on FHIR Functional Experience — Drive the Use Case',
+                    children: [
+                        { text: 'Network — Provider Data Management' },
+                        { text: 'Provider / Clinical Management' },
+                        { text: 'Claims Use Case — Mostly on Cost Driver' },
+                        { text: 'Provider / Hospital Management (Chart Summarization etc.) — API / Sentara Use Case' }
+                    ]
+                },
+                {
+                    title: 'Phlox Specific Agentic AI Use Case',
+                    children: [
+                        { text: 'ONNT Upgrade' },
+                        { text: 'Demand Projects' },
+                        { text: 'Data Integration in DataBricks' },
+                        { text: 'Testing — Shift from Automation to integrate into the Agents' }
+                    ]
+                },
+                {
+                    title: 'SDLC Agentic AI Use Case',
+                    children: [
+                        { text: 'Replacement Prioritization Resource Set Work' },
+                        { text: 'Knowledge Transition Framework / Workflow' },
+                        { text: 'Knowledge Documentation' },
+                        { text: 'Tech Debt Framework' }
+                    ]
+                },
+                {
+                    title: 'Prod Support AI Use Case',
+                    children: [
+                        { text: 'Teams Building Additional Use Cases' }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'enablement',
+            title: 'Enablement Team',
+            subtitle: 'SENZAI core team structure — Architects, Infra, Security, Training & Program Office',
+            icon: '👥',
+            color: 'var(--c-enablement)',
+            children: [
+                {
+                    title: 'AI Architect Team',
+                    detail: 'Top Architects for Specific Work',
+                    children: [
+                        { text: '<strong>Muthu</strong> (New Hire) — Use Case' },
+                        { text: '<strong>Guruprasath</strong> — Agentic Dev' },
+                        { text: '<strong>Sandeep</strong> — AI Build/Test' },
+                        { text: '<strong>Ajay</strong> — Infosys' }
+                    ]
+                },
+                {
+                    title: 'Infra Enablement Team',
+                    detail: 'Build and Expand',
+                    children: [
+                        { text: 'Aravindhan / Siva + 2 New Additions' },
+                        { text: 'Focus on Infra Proficient Staff instead of MPIs' }
+                    ]
+                },
+                {
+                    title: 'Security / Governance / Observability Team',
+                    children: [
+                        { text: 'Reto + 2 New FTE' },
+                        { text: 'Focus on Governance and Security Layer inside Infinite AGNTX Platform' }
+                    ]
+                },
+                {
+                    title: 'Program Office',
+                    children: [
+                        { text: 'Gnani + 6 RPIs' },
+                        { text: 'Focus on Program Management — Build / Use Cases / GTM' }
+                    ]
+                },
+                {
+                    title: 'Training Office',
+                    detail: 'Developer Training / Use Cases Build View',
+                    children: [
+                        { text: 'Build the AGNTX for Developer Learning — How to Build View' },
+                        { text: 'Use Case View for Client — See Zyler View' }
+                    ]
+                },
+                {
+                    title: 'SenzAI Testing',
+                    detail: 'Integrated (UX / Agentic) — outside Developer testing',
+                    children: []
+                }
+            ]
+        },
+        {
+            id: 'client',
+            title: 'Client Enablement',
+            subtitle: 'SENZAI deployment and governance at client sites',
+            icon: '🏢',
+            color: 'var(--c-client)',
+            children: [
+                {
+                    title: 'Localize AGNTX Studio Build to Client',
+                    children: []
+                },
+                {
+                    title: 'Integrate Client Knowledge Services',
+                    detail: 'SharePoint / Services integration to SenzAI.Studio',
+                    children: []
+                },
+                {
+                    title: 'Build Client AECOE',
+                    detail: 'Integrate SenzAI to the governance tool',
+                    children: []
+                },
+                {
+                    title: 'Build Governance for Client',
+                    detail: 'Based on Client Security Protocols',
+                    children: []
+                }
+            ]
+        },
+        {
+            id: 'branding',
+            title: 'SENZAI.Branding',
+            subtitle: 'GTM, demos, and market collateral for SENZAI platform',
+            icon: '📣',
+            color: 'var(--c-branding)',
+            children: [
+                {
+                    title: 'Use Case Demos',
+                    children: [
+                        { text: '<strong>Retro / Ganesh</strong> — GTM Core Leaders' },
+                        { text: 'PT Programs Sell → Agents → x Cost / SME Humans → Y Cost' }
+                    ]
+                },
+                {
+                    title: 'GTM (Go-To-Market)',
+                    children: [
+                        { text: 'Build AGNTX Collaterals' },
+                        { text: 'Refresh existing BD Materials — Powered by AGNTX' },
+                        { text: 'Build AECOE for Clients (Ideation to Realization)' }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'strategy',
+            title: 'Strategy & Next Steps',
+            subtitle: 'Transformation roadmap — Short term, long term, and skill evolution',
+            icon: '🧭',
+            color: 'var(--c-strategy)',
+            children: [
+                {
+                    title: 'Business Transformation View',
+                    children: [
+                        { text: 'How to Shift LH from SDLC to ADLC' },
+                        { text: 'Use this Training Material' },
+                        { text: 'SDLC View' },
+                        { text: 'How do you Evolve Client PTFs' }
+                    ]
+                },
+                {
+                    title: 'Short Term',
+                    children: [
+                        { text: 'Leverage the Training built to Train — 65+' },
+                        { text: 'Training all Developers / Testers to Embrace ADLC' }
+                    ]
+                },
+                {
+                    title: 'Long Term',
+                    children: [
+                        { text: 'SDLC → ADLC Shift' },
+                        { text: 'Build Use Case View' }
+                    ]
+                },
+                {
+                    title: 'Enhance AGNTX',
+                    children: [
+                        { text: 'Improve Accuracy of the Sub Agents' }
+                    ]
+                },
+                {
+                    title: 'Skill Models',
+                    detail: 'Agents vs FPs',
+                    children: []
+                }
+            ]
+        }
+    ];
+
+    // ─── STATE ───
+    let currentBranch = null;
+    const visited = new Set();
+
+    // ─── RENDER HUB ───
+    function renderHub() {
+        const grid = document.getElementById('cardGrid');
+        grid.innerHTML = branches.map((b, i) => {
+            const count = countItems(b.children);
+            return `
+            <div class="branch-card ${visited.has(b.id) ? 'visited' : ''}"
+                 style="--accent: ${b.color}"
+                 onclick="openBranch('${b.id}')">
+                <div class="card-icon">${b.icon}</div>
+                <div class="card-title">
+                    ${b.title}
+                    <span class="card-visited-dot"></span>
+                </div>
+                <div class="card-subtitle">${b.subtitle}</div>
+                <div class="card-meta">
+                    <span class="card-count">${count} ITEM${count !== 1 ? 'S' : ''}</span>
+                    <span class="card-arrow">→</span>
+                </div>
+            </div>`;
+        }).join('');
+    }
+
+    function countItems(children) {
+        let n = 0;
+        for (const c of children) {
+            n++;
+            if (c.children) n += c.children.length;
+        }
+        return n;
+    }
+
+    // ─── RENDER NAV DOTS ───
+    function renderNavDots() {
+        const dots = document.getElementById('navDots');
+        dots.innerHTML = branches.map((b, i) => {
+            let cls = 'nav-dot';
+            if (visited.has(b.id)) cls += ' visited';
+            if (currentBranch && b.id === currentBranch) cls += ' current';
+            return `<span class="${cls}" title="${b.title}" style="--accent:${b.color};--dot-color:${b.color}" onclick="openBranch('${b.id}')"></span>`;
+        }).join('');
+    }
+
+    // ─── OPEN BRANCH ───
+    function openBranch(id) {
+        const branch = branches.find(b => b.id === id);
+        if (!branch) return;
+        currentBranch = id;
+        visited.add(id);
+        allExpanded = false;
+
+        // Update breadcrumb
+        document.getElementById('bc-sep').style.display = '';
+        document.getElementById('bc-current').textContent = branch.title;
+
+        // Hide hub, show branch
+        document.getElementById('hubView').classList.add('hidden');
+        const bv = document.getElementById('branchView');
+        bv.className = 'branch-view active';
+        bv.style.setProperty('--accent', branch.color);
+
+        // Prev / Next
+        const idx = branches.indexOf(branch);
+        const prev = idx > 0 ? branches[idx - 1] : null;
+        const next = idx < branches.length - 1 ? branches[idx + 1] : null;
+
+        bv.innerHTML = `
+            <button class="back-btn" onclick="goHome()">← Back to overview</button>
+            <div class="branch-header">
+                <div class="branch-header-icon">${branch.icon}</div>
+                <h2>${branch.title}</h2>
+                <p>${branch.subtitle}</p>
+            </div>
+            <div class="branch-toolbar">
+                <button class="expand-all-btn" onclick="toggleExpandAll('${branch.id}')" id="expandAllBtn">
+                    <span id="expandAllIcon">▸</span> Expand all
+                </button>
+            </div>
+            <div class="item-group" id="itemGroup">
+                ${branch.children.map((item, i) => renderItem(item, i, branch.id)).join('')}
+            </div>
+            <div class="branch-nav">
+                ${prev ? `<button class="branch-nav-btn" onclick="openBranch('${prev.id}')">← <span class="nav-label">${prev.title}</span></button>` : '<span></span>'}
+                ${next ? `<button class="branch-nav-btn" onclick="openBranch('${next.id}')"><span class="nav-label">${next.title}</span> →</button>` : '<span></span>'}
+            </div>
+        `;
+
+        renderNavDots();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ─── RENDER ITEM ROW ───
+    function renderItem(item, index, branchId) {
+        const hasChildren = item.children && item.children.length > 0;
+        const itemId = `${branchId}-${index}`;
+        return `
+        <div class="item-row" id="item-${itemId}">
+            <div class="item-header${hasChildren ? '' : ' leaf-header'}" ${hasChildren ? `onclick="toggleItem('${itemId}')"` : ''}>
+                <span class="item-toggle ${hasChildren ? '' : 'leaf'}">${hasChildren ? '›' : '•'}</span>
+                <span class="item-label">
+                    ${item.title}
+                    ${item.detail ? `<span class="detail">${item.detail}</span>` : ''}
+                </span>
+                ${item.badge ? `<span class="item-badge">${item.badge}</span>` : ''}
+            </div>
+            ${hasChildren ? `
+            <div class="item-children">
+                <div class="item-children-inner">
+                    ${item.children.map(ch => `
+                        <div class="child-item">
+                            <span class="child-dot"></span>
+                            <span class="child-text">${ch.text}${ch.note ? `<span class="note">${ch.note}</span>` : ''}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>` : ''}
+        </div>`;
+    }
+
+    // ─── TOGGLE ITEM ───
+    function toggleItem(itemId) {
+        const el = document.getElementById('item-' + itemId);
+        if (el) el.classList.toggle('expanded');
+    }
+
+    // ─── EXPAND / COLLAPSE ALL ───
+    let allExpanded = false;
+    function toggleExpandAll(branchId) {
+        const group = document.getElementById('itemGroup');
+        if (!group) return;
+        const rows = group.querySelectorAll('.item-row');
+        allExpanded = !allExpanded;
+        rows.forEach(row => {
+            const hasChildren = row.querySelector('.item-children');
+            if (hasChildren) {
+                if (allExpanded) row.classList.add('expanded');
+                else row.classList.remove('expanded');
+            }
+        });
+        const btn = document.getElementById('expandAllBtn');
+        const icon = document.getElementById('expandAllIcon');
+        if (btn && icon) {
+            icon.textContent = allExpanded ? '▾' : '▸';
+            btn.lastChild.textContent = allExpanded ? ' Collapse all' : ' Expand all';
+        }
+    }
+
+    // ─── GO HOME ───
+    function goHome() {
+        currentBranch = null;
+        document.getElementById('bc-sep').style.display = 'none';
+        document.getElementById('bc-current').textContent = '';
+        document.getElementById('hubView').classList.remove('hidden');
+        document.getElementById('branchView').className = 'branch-view';
+        renderHub();
+        renderNavDots();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ─── FULLSCREEN ───
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => {});
+            document.body.classList.add('is-fullscreen');
+        } else {
+            document.exitFullscreen();
+            document.body.classList.remove('is-fullscreen');
+        }
+    }
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) document.body.classList.remove('is-fullscreen');
+    });
+
+    // ─── KEYBOARD SHORTCUTS ───
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            goHome();
+        }
+        if (e.key === 'f' || e.key === 'F') {
+            if (e.target.tagName === 'INPUT') return;
+            toggleFullscreen();
+        }
+        // Number keys 1-6
+        const num = parseInt(e.key);
+        if (num >= 1 && num <= 6) {
+            openBranch(branches[num - 1].id);
+        }
+        // Arrow left/right for prev/next branch
+        if (currentBranch) {
+            const idx = branches.findIndex(b => b.id === currentBranch);
+            if (e.key === 'ArrowLeft' && idx > 0) {
+                openBranch(branches[idx - 1].id);
+            }
+            if (e.key === 'ArrowRight' && idx < branches.length - 1) {
+                openBranch(branches[idx + 1].id);
+            }
+        }
+    });
+
+    // ─── INIT ───
+    renderHub();
+    renderNavDots();
+    </script>
+</body>
+</html>
