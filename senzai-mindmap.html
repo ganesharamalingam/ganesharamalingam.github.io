@@ -3,757 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENZAI — Future Roadmap</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>SENZAI — Strategy Mind Map</title>
     <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --bg: #ffffff;
-            --bg-subtle: #f8fafc;
-            --bg-muted: #f1f5f9;
-            --border: #e2e8f0;
-            --border-hover: #cbd5e1;
-            --text-primary: #0f172a;
-            --text-secondary: #334155;
-            --text-muted: #64748b;
-            --text-faint: #94a3b8;
-            --radius: 12px;
-            --c-studio: #2563eb;
-            --c-agents: #7c3aed;
-            --c-enablement: #db2777;
-            --c-client: #ea580c;
-            --c-branding: #059669;
-            --c-strategy: #d97706;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #ffffff; }
+        .markmap {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
         }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text-primary);
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-
-        /* ── Page Header ── */
-        .page-head {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 3rem 2rem 2rem;
-            text-align: center;
-        }
-        .page-head h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.3rem;
-        }
-        .page-head h1 em {
-            font-style: normal;
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .page-head .sub {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        /* ── Toolbar ── */
-        .toolbar {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 2rem 1rem;
-            display: flex;
-            justify-content: flex-end;
-            gap: 0.5rem;
-        }
-        .toolbar button {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            letter-spacing: 0.3px;
-            color: var(--text-faint);
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 0.35rem 0.75rem;
-            cursor: pointer;
-            transition: all 0.15s;
-        }
-        .toolbar button:hover {
-            color: var(--text-secondary);
-            border-color: var(--border-hover);
-            background: var(--bg-subtle);
-        }
-
-        /* ── Workstream List ── */
-        .workstreams {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 2rem 4rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        /* ── Workstream Row ── */
-        .ws {
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            border-left: 4px solid var(--accent);
-            background: var(--bg);
-            overflow: hidden;
-            transition: box-shadow 0.2s, border-color 0.2s;
-        }
-        .ws:hover {
-            box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-        }
-        .ws.open {
-            border-color: color-mix(in srgb, var(--accent) 30%, var(--border));
-            border-left-color: var(--accent);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
-
-        /* ── Workstream Header (clickable) ── */
-        .ws-header {
-            display: flex;
-            align-items: center;
-            padding: 1.1rem 1.5rem;
-            cursor: pointer;
-            user-select: none;
-            gap: 1rem;
-            transition: background 0.15s;
-        }
-        .ws-header:hover {
-            background: var(--bg-subtle);
-        }
-        .ws-toggle {
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-faint);
-            font-size: 0.8rem;
-            transition: transform 0.25s;
-            flex-shrink: 0;
-        }
-        .ws.open .ws-toggle {
-            transform: rotate(90deg);
-            color: var(--accent);
-        }
-        .ws-info {
-            flex: 1;
-            min-width: 0;
-        }
-        .ws-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-        .ws-desc {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            margin-top: 0.1rem;
-        }
-        .ws-stats {
-            display: flex;
-            gap: 0.5rem;
-            flex-shrink: 0;
-        }
-        .ws-stat {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            letter-spacing: 0.3px;
-            padding: 0.2rem 0.55rem;
-            border-radius: 20px;
-            background: color-mix(in srgb, var(--accent) 8%, transparent);
-            color: var(--accent);
-            white-space: nowrap;
-        }
-
-        /* ── Expandable Detail ── */
-        .ws-detail {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .ws.open .ws-detail {
-            max-height: 2000px;
-        }
-        .ws-detail-inner {
-            padding: 0 1.5rem 1.5rem 3.5rem;
-        }
-
-        /* ── Detail Section ── */
-        .detail-section {
-            margin-bottom: 1.25rem;
-        }
-        .detail-section:last-child {
-            margin-bottom: 0;
-        }
-        .detail-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--text-faint);
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.3rem;
-            border-bottom: 1px solid var(--bg-muted);
-        }
-
-        /* ── Timeline Items ── */
-        .timeline-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            padding: 0.45rem 0;
-        }
-        .timeline-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent);
-            margin-top: 0.35rem;
-            flex-shrink: 0;
-        }
-        .timeline-text {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-        }
-        .timeline-date {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            color: var(--accent);
-            font-weight: 500;
-            background: color-mix(in srgb, var(--accent) 6%, transparent);
-            padding: 0.1rem 0.45rem;
-            border-radius: 4px;
-            white-space: nowrap;
-        }
-
-        /* ── Team Items ── */
-        .team-summary {
-            font-size: 0.88rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-        }
-        .team-summary strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-        .team-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-        .team-person {
-            font-size: 0.8rem;
-            padding: 0.3rem 0.65rem;
-            border-radius: 6px;
-            background: var(--bg-muted);
-            color: var(--text-secondary);
-        }
-        .team-person strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-        .team-person .role {
-            color: var(--text-muted);
-            font-size: 0.72rem;
-        }
-
-        /* ── Initiative Items ── */
-        .init-group {
-            margin-bottom: 0.75rem;
-        }
-        .init-group:last-child {
-            margin-bottom: 0;
-        }
-        .init-group-title {
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.3rem;
-        }
-        .init-group-note {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            font-style: italic;
-            margin-bottom: 0.3rem;
-        }
-        .init-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.6rem;
-            padding: 0.3rem 0;
-        }
-        .init-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: color-mix(in srgb, var(--accent) 40%, var(--text-faint));
-            margin-top: 0.4rem;
-            flex-shrink: 0;
-        }
-        .init-text {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-        .init-text strong {
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        /* ── Keyboard Hints ── */
-        .hints {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(10px);
-            border-top: 1px solid var(--border);
-            padding: 0.4rem 2rem;
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            color: var(--text-faint);
-        }
-        .hints kbd {
-            background: var(--bg-subtle);
-            border: 1px solid var(--border);
-            border-radius: 3px;
-            padding: 0.05rem 0.35rem;
-            font-size: 0.65rem;
-            margin-right: 0.2rem;
-        }
-
-        /* ── Fullscreen ── */
-        body.fullscreen .hints { display: none; }
-
-        /* ── Responsive ── */
-        @media (max-width: 640px) {
-            .page-head { padding: 2rem 1rem 1.5rem; }
-            .page-head h1 { font-size: 1.6rem; }
-            .toolbar { padding: 0 1rem 0.75rem; }
-            .workstreams { padding: 0 1rem 3rem; }
-            .ws-header { padding: 0.9rem 1rem; gap: 0.6rem; }
-            .ws-detail-inner { padding: 0 1rem 1.25rem 2.5rem; }
-            .ws-stats { display: none; }
-            .hints { display: none; }
-        }
-
-        /* ── Print ── */
-        @media print {
-            .hints, .toolbar { display: none; }
-            .ws-detail { max-height: none !important; }
-            .ws { break-inside: avoid; }
+        .markmap > svg {
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
 <body>
+    <div class="markmap">
+        <script type="text/template">
+---
+markmap:
+  colorFreezeLevel: 2
+---
 
-<div class="page-head">
-    <h1><em>SENZAI</em> — Future Roadmap</h1>
-    <p class="sub">Powering Infinite Services Delivery</p>
-</div>
+# SENZAI — Powering Infinite Services Delivery
 
-<div class="toolbar">
-    <button onclick="expandAll()">Expand all</button>
-    <button onclick="collapseAll()">Collapse all</button>
-    <button onclick="toggleFullscreen()">Fullscreen</button>
-</div>
+## SENZAI.Studio
+### 📅 Phase 1: Migrate from Emergent to Infinite — *Mar 15, 2026*
+### 📅 Phase 2: Increase Accuracy / Train the Model — *May 2026*
+### 👥 Studio Migration & Build Team — 6 FTE
+- 2 React Dev / 2 Node JS / 1 Manager / 1 Architect
+- 🔄 Migration from Emergent / Infosys tooling
+### 🎯 Agentic Development Framework
+- 👥 3 FTE (AI Dev) — SDLC Sub-Agent Build Blueprint
+- 👥 6 FTE (AI Dev) — Agentic AI Development Framework
 
-<div class="workstreams" id="workstreams"></div>
+## SENZAI.Agents
+### 🎯 Functional Agentic AI Use Case Build
+- 🎯 Network — Provider Data Management
+- 🎯 Provider / Clinical Management
+- 🎯 Claims — Mostly on Cost Driver
+- 🎯 Hospital Management (Chart Summarization) — API / Sentara
+- *Based on FHIR Functional Experience*
+### 🎯 Phlox Specific Use Case
+- ONNT Upgrade
+- Demand Projects
+- Data Integration in DataBricks
+- 🔄 Testing — Shift from Automation to Agents
+### 🎯 SDLC Agentic AI Use Case
+- Replacement Prioritization
+- Knowledge Transition Framework
+- Knowledge Documentation
+- Tech Debt Framework
+### 🎯 Prod Support AI Use Case
+- Teams Building Additional Use Cases
 
-<div class="hints">
-    <span><kbd>1</kbd>–<kbd>6</kbd> Toggle section</span>
-    <span><kbd>A</kbd> Expand all</span>
-    <span><kbd>Esc</kbd> Collapse all</span>
-    <span><kbd>F</kbd> Fullscreen</span>
-</div>
+## Enablement Team
+### 👥 AI Architect Team
+- 👤 Muthu (New Hire) — Use Case
+- 👤 Guruprasath — Agentic Dev
+- 👤 Sandeep — AI Build/Test
+- 👤 Ajay — Infosys
+### 👥 Infra Enablement Team
+- 👤 Aravindhan / Siva + 2 New Additions
+- Focus on Infra Proficient Staff
+### 🛡️ Security / Governance / Observability
+- 👤 Reto + 2 New FTE
+- Governance & Security Layer — AGNTX Platform
+### 👥 Program Office
+- 👤 Gnani + 6 RPIs
+- Build / Use Cases / GTM
+### 👥 Training Office
+- AGNTX Developer Learning
+- Use Case View — See Zyler View
+### ⚡ SenzAI Testing
+- Integrated (UX / Agentic)
 
-<script>
-// ═══════════════════════════════════════════════════════════════
-//  DATA — Edit text here. The page renders from this object.
-// ═══════════════════════════════════════════════════════════════
-const workstreams = [
-    {
-        id: 'studio',
-        title: 'SENZAI.Studio',
-        desc: 'Front end to SENZAI — Ideation to Building Agent Accelerators',
-        color: 'var(--c-studio)',
-        stats: ['6 FTE', 'Mar 2026'],
-        timeline: [
-            { text: 'Phase 1: Migrate from Emergent to Infinite', date: 'Mar 15, 2026' },
-            { text: 'Phase 2: Increase Accuracy / Train the Model', date: 'May 2026' }
-        ],
-        team: {
-            summary: '6 FTE — 2 React Dev / 2 Node JS / 1 Manager / 1 Architect',
-            people: [
-                { name: 'Migration from Emergent / Infosys tooling', role: '' }
-            ]
-        },
-        initiatives: [
-            {
-                title: 'Agentic Development Framework',
-                items: [
-                    '3 FTE (AI Dev) — Target SDLC Sub-Agent Build Blueprint',
-                    '6 FTE (AI Dev) — Agentic AI Development Framework'
-                ]
-            }
-        ]
-    },
-    {
-        id: 'agents',
-        title: 'SENZAI.Agents',
-        desc: 'Gateway to Agentic AI based on Use Cases',
-        color: 'var(--c-agents)',
-        stats: ['4 Categories'],
-        timeline: [],
-        team: null,
-        initiatives: [
-            {
-                title: 'Functional Agentic AI Use Case Build',
-                note: 'Based on FHIR Functional Experience — Drive the Use Case',
-                items: [
-                    'Network — Provider Data Management',
-                    'Provider / Clinical Management',
-                    'Claims Use Case — Mostly on Cost Driver',
-                    'Provider / Hospital Management (Chart Summarization etc.) — API / Sentara Use Case'
-                ]
-            },
-            {
-                title: 'Phlox Specific Agentic AI Use Case',
-                items: [
-                    'ONNT Upgrade',
-                    'Demand Projects',
-                    'Data Integration in DataBricks',
-                    'Testing — Shift from Automation to integrate into the Agents'
-                ]
-            },
-            {
-                title: 'SDLC Agentic AI Use Case',
-                items: [
-                    'Replacement Prioritization Resource Set Work',
-                    'Knowledge Transition Framework / Workflow',
-                    'Knowledge Documentation',
-                    'Tech Debt Framework'
-                ]
-            },
-            {
-                title: 'Prod Support AI Use Case',
-                items: [
-                    'Teams Building Additional Use Cases'
-                ]
-            }
-        ]
-    },
-    {
-        id: 'enablement',
-        title: 'SENZAI — Enablement Team',
-        desc: 'Core team structure — Architects, Infra, Security, Training & Program Office',
-        color: 'var(--c-enablement)',
-        stats: ['6 Teams'],
-        timeline: [],
-        team: {
-            summary: 'Cross-functional team of Architects, Infra, Security, Program & Training',
-            people: [
-                { name: 'Muthu', role: 'Use Case (New Hire)' },
-                { name: 'Guruprasath', role: 'Agentic Dev' },
-                { name: 'Sandeep', role: 'AI Build/Test' },
-                { name: 'Ajay', role: 'Infosys' },
-                { name: 'Aravindhan', role: 'Infra' },
-                { name: 'Siva', role: 'Infra' },
-                { name: 'Reto', role: 'Security/Governance' },
-                { name: 'Gnani', role: 'Program Office' }
-            ]
-        },
-        initiatives: [
-            {
-                title: 'AI Architect Team',
-                note: 'Top Architects for Specific Work',
-                items: [
-                    'Muthu (New Hire) — Use Case',
-                    'Guruprasath — Agentic Dev',
-                    'Sandeep — AI Build/Test',
-                    'Ajay — Infosys'
-                ]
-            },
-            {
-                title: 'Infra Enablement Team — Build and Expand',
-                items: [
-                    'Aravindhan / Siva + 2 New Additions',
-                    'Focus on Infra Proficient Staff instead of MPIs'
-                ]
-            },
-            {
-                title: 'Security / Governance / Observability Team',
-                items: [
-                    'Reto + 2 New FTE',
-                    'Focus on Governance and Security Layer inside Infinite AGNTX Platform'
-                ]
-            },
-            {
-                title: 'Program Office',
-                items: [
-                    'Gnani + 6 RPIs',
-                    'Focus on Program Management — Build / Use Cases / GTM'
-                ]
-            },
-            {
-                title: 'Training Office — Developer Training / Use Cases Build View',
-                items: [
-                    'Build the AGNTX for Developer Learning — How to Build View',
-                    'Use Case View for Client — See Zyler View'
-                ]
-            },
-            {
-                title: 'SenzAI Testing',
-                note: 'Integrated (UX / Agentic) — outside Developer testing',
-                items: []
-            }
-        ]
-    },
-    {
-        id: 'client',
-        title: 'SENZAI — Client Enablement',
-        desc: 'Deployment and governance at client sites',
-        color: 'var(--c-client)',
-        stats: ['4 Workstreams'],
-        timeline: [],
-        team: null,
-        initiatives: [
-            {
-                title: 'Client Enablement Workstreams',
-                items: [
-                    'Localize AGNTX Studio build to Client',
-                    'Integrate Client Knowledge Services (SharePoint / Services) to SenzAI.Studio',
-                    'Build Client AECOE / Integrate SenzAI to the governance tool',
-                    'Build Governance for Client — Based on Client Security Protocols'
-                ]
-            }
-        ]
-    },
-    {
-        id: 'branding',
-        title: 'SENZAI.Branding',
-        desc: 'GTM, demos, and market collateral for the SENZAI platform',
-        color: 'var(--c-branding)',
-        stats: [],
-        timeline: [],
-        team: {
-            summary: 'GTM Core Leaders',
-            people: [
-                { name: 'Retro', role: 'GTM Lead' },
-                { name: 'Ganesh', role: 'GTM Lead' }
-            ]
-        },
-        initiatives: [
-            {
-                title: 'Use Case Demos',
-                items: [
-                    'Retro / Ganesh — GTM Core Leaders',
-                    'PT Programs Sell → Agents → x Cost / SME Humans → Y Cost'
-                ]
-            },
-            {
-                title: 'Go-To-Market',
-                items: [
-                    'Build AGNTX Collaterals',
-                    'Refresh existing BD Materials — Powered by AGNTX',
-                    'Build AECOE for Clients (Ideation to Realization)'
-                ]
-            }
-        ]
-    },
-    {
-        id: 'strategy',
-        title: 'Strategy & Next Steps',
-        desc: 'Transformation roadmap — Short term, long term, and skill evolution',
-        color: 'var(--c-strategy)',
-        stats: ['SDLC → ADLC'],
-        timeline: [
-            { text: 'Leverage Training built to train 65+ resources', date: 'Short Term' },
-            { text: 'Train all Developers / Testers to Embrace ADLC', date: 'Short Term' },
-            { text: 'SDLC → ADLC Shift', date: 'Long Term' },
-            { text: 'Build Use Case View', date: 'Long Term' }
-        ],
-        team: null,
-        initiatives: [
-            {
-                title: 'Business Transformation View',
-                items: [
-                    'How to Shift LH from SDLC to ADLC',
-                    'Use this Training Material',
-                    'SDLC View',
-                    'How do you Evolve Client PTFs'
-                ]
-            },
-            {
-                title: 'Platform Enhancement',
-                items: [
-                    'Enhance AGNTX',
-                    'Improve Accuracy of the Sub Agents'
-                ]
-            },
-            {
-                title: 'Skill Models',
-                note: 'Agents vs FPs',
-                items: []
-            }
-        ]
-    }
-];
+## Client Enablement
+### 🔄 Localize AGNTX Studio to Client
+### 🔄 Integrate Client Knowledge Services
+- SharePoint / Services → SenzAI.Studio
+### 🎯 Build Client AECOE
+- Integrate SenzAI to governance tool
+### 🛡️ Client Governance
+- Based on Client Security Protocols
 
+## SENZAI.Branding
+### 📣 Use Case Demos
+- 👤 Retro / Ganesh — GTM Core Leaders
+- PT Programs → Agents → x Cost / SME Humans → Y Cost
+### 📣 Go-To-Market
+- Build AGNTX Collaterals
+- Refresh BD Materials — Powered by AGNTX
+- Build AECOE for Clients (Ideation to Realization)
 
-// ═══════════════════════════════════════════════════════════════
-//  RENDER
-// ═══════════════════════════════════════════════════════════════
-function render() {
-    const container = document.getElementById('workstreams');
-    container.innerHTML = workstreams.map((ws, i) => `
-        <div class="ws" id="ws-${ws.id}" style="--accent:${ws.color}">
-            <div class="ws-header" onclick="toggle('${ws.id}')">
-                <span class="ws-toggle">›</span>
-                <div class="ws-info">
-                    <div class="ws-title">${ws.title}</div>
-                    <div class="ws-desc">${ws.desc}</div>
-                </div>
-                <div class="ws-stats">
-                    ${ws.stats.map(s => `<span class="ws-stat">${s}</span>`).join('')}
-                </div>
-            </div>
-            <div class="ws-detail">
-                <div class="ws-detail-inner">
-                    ${renderTimeline(ws)}
-                    ${renderTeam(ws)}
-                    ${renderInitiatives(ws)}
-                </div>
-            </div>
-        </div>
-    `).join('');
-}
-
-function renderTimeline(ws) {
-    if (!ws.timeline || ws.timeline.length === 0) return '';
-    return `
-        <div class="detail-section">
-            <div class="detail-label">Timeline / Phases</div>
-            ${ws.timeline.map(t => `
-                <div class="timeline-item">
-                    <span class="timeline-dot"></span>
-                    <span class="timeline-text">${t.text}</span>
-                    <span class="timeline-date">${t.date}</span>
-                </div>
-            `).join('')}
-        </div>`;
-}
-
-function renderTeam(ws) {
-    if (!ws.team) return '';
-    return `
-        <div class="detail-section">
-            <div class="detail-label">Team</div>
-            <div class="team-summary"><strong>${ws.team.summary}</strong></div>
-            ${ws.team.people.length > 0 ? `
-            <div class="team-grid">
-                ${ws.team.people.map(p => `
-                    <span class="team-person">
-                        <strong>${p.name}</strong>${p.role ? ` <span class="role">— ${p.role}</span>` : ''}
-                    </span>
-                `).join('')}
-            </div>` : ''}
-        </div>`;
-}
-
-function renderInitiatives(ws) {
-    if (!ws.initiatives || ws.initiatives.length === 0) return '';
-    return `
-        <div class="detail-section">
-            <div class="detail-label">Initiatives</div>
-            ${ws.initiatives.map(g => `
-                <div class="init-group">
-                    <div class="init-group-title">${g.title}</div>
-                    ${g.note ? `<div class="init-group-note">${g.note}</div>` : ''}
-                    ${g.items.map(item => `
-                        <div class="init-item">
-                            <span class="init-dot"></span>
-                            <span class="init-text">${item}</span>
-                        </div>
-                    `).join('')}
-                </div>
-            `).join('')}
-        </div>`;
-}
-
-
-// ═══════════════════════════════════════════════════════════════
-//  INTERACTIONS
-// ═══════════════════════════════════════════════════════════════
-function toggle(id) {
-    const el = document.getElementById('ws-' + id);
-    if (el) el.classList.toggle('open');
-}
-
-function expandAll() {
-    document.querySelectorAll('.ws').forEach(el => el.classList.add('open'));
-}
-
-function collapseAll() {
-    document.querySelectorAll('.ws').forEach(el => el.classList.remove('open'));
-}
-
-function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen().catch(() => {});
-        document.body.classList.add('fullscreen');
-    } else {
-        document.exitFullscreen();
-        document.body.classList.remove('fullscreen');
-    }
-}
-
-document.addEventListener('fullscreenchange', () => {
-    if (!document.fullscreenElement) document.body.classList.remove('fullscreen');
-});
-
-// Keyboard shortcuts
-document.addEventListener('keydown', (e) => {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-
-    const num = parseInt(e.key);
-    if (num >= 1 && num <= workstreams.length) {
-        toggle(workstreams[num - 1].id);
-        return;
-    }
-
-    switch (e.key.toLowerCase()) {
-        case 'a': expandAll(); break;
-        case 'escape': collapseAll(); break;
-        case 'f':
-            e.preventDefault();
-            toggleFullscreen();
-            break;
-    }
-});
-
-// Init
-render();
-</script>
+## Strategy & Next Steps
+### 🔄 Business Transformation View
+- How to Shift LH from SDLC to ADLC
+- Use this Training Material
+- SDLC View
+- How do you Evolve Client PTFs
+### 📅 Short Term
+- Leverage Training built to Train 65+
+- Training all Developers / Testers to Embrace ADLC
+### 📅 Long Term
+- SDLC → ADLC Shift
+- Build Use Case View
+### ⚡ Enhance AGNTX
+- Improve Accuracy of the Sub Agents
+### Skill Models — Agents vs FPs
+        </script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/markmap-autoloader@latest"></script>
 </body>
 </html>
