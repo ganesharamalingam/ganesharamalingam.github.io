@@ -186,7 +186,7 @@ const md = `
         }
         node.children.forEach(c => foldBelow(c, level + 1, maxLevel));
     }
-    foldBelow(root, 0, 2); // Show root + 6 branches only
+    foldBelow(root, 0, 1); // Show root + 6 branch names only (their children hidden)
 
     const mm = Markmap.create('#mindmap', {
         colorFreezeLevel: 2,
