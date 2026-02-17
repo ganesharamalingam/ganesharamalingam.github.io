@@ -112,46 +112,60 @@
 
     setTimeout(() => mm.fit(), 150);
 
-    // One-at-a-time expansion for level-1 branches
-    // Intercept in capture phase so we handle BEFORE markmap's own click
+    // One-at-a-time expansion: let markmap handle click, then correct state
     const svg = document.getElementById('mindmap');
+    let lastClick = 0;
 
-    svg.addEventListener('click', (e) => {
-        const circle = e.target.closest('circle');
-        if (!circle) return;
+    function setupOneAtATime() {
+        svg.addEventListener('click', (e) => {
+            const circle = e.target.closest('circle');
+            if (!circle) return;
 
-        const gNode = circle.closest('g.markmap-node');
-        if (!gNode || !gNode.__data__) return;
+            // Debounce rapid clicks (300ms)
+            const now = Date.now();
+            if (now - lastClick < 300) return;
+            lastClick = now;
 
-        const hierNode = gNode.__data__;
+            // Wait for markmap to process its own click, then correct
+            setTimeout(() => {
+                if (!root.children) return;
 
-        // Only intercept level-1 branch circle clicks
-        if (hierNode.depth !== 1) return;
+                const expanded = root.children.filter(c =>
+                    !c.payload || !c.payload.fold
+                );
 
-        // Prevent markmap from double-toggling
-        e.stopPropagation();
-        e.preventDefault();
+                if (expanded.length > 1) {
+                    // Multiple branches open → collapse all, re-open only the clicked one
+                    root.children.forEach(c => {
+                        c.payload = c.payload || {};
+                        c.payload.fold = 1;
+                    });
 
-        // Read current state BEFORE we change anything
-        const clickedContent = hierNode.data.content;
-        const wasOpen = !(hierNode.data.payload && hierNode.data.payload.fold);
+                    const gNode = circle.closest('g.markmap-node');
+                    if (gNode) {
+                        const nodeData = gNode.__data__;
+                        if (nodeData && nodeData.data) {
+                            const clickedName = nodeData.data.content;
+                            const match = root.children.find(c => c.content === clickedName);
+                            if (match) {
+                                match.payload = match.payload || {};
+                                match.payload.fold = 0;
+                            }
+                        }
+                    }
 
-        // Fold ALL level-1 branches
-        root.children.forEach(c => {
-            c.payload = c.payload || {};
-            c.payload.fold = 1;
-        });
+                    mm.setData(root);
+                    setTimeout(() => mm.fit(), 300);
+                } else {
+                    // 0 or 1 branch open — just auto-fit to keep nodes in viewport
+                    setTimeout(() => mm.fit(), 300);
+                }
+            }, 100);
+        }, true);
+    }
 
-        // If this branch was closed, open it (toggle behavior)
-        if (!wasOpen) {
-            const match = root.children.find(c => c.content === clickedContent);
-            if (match) match.payload.fold = 0;
-        }
-        // If it was already open, all stay folded → back to summary
-
-        mm.setData(root);
-        setTimeout(() => mm.fit(), 300);
-    }, true); // capture phase
+    // Wait for initial render before attaching handler
+    setTimeout(setupOneAtATime, 500);
 })();
 </script>
 </body>
