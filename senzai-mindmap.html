@@ -10,6 +10,16 @@
         #mindmap { width: 100vw; height: 100vh; }
         svg.markmap { width: 100%; height: 100%; }
 
+        /* Logo overlay — update src to your logo file */
+        .logo {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            z-index: 10;
+            height: 40px;
+            opacity: 0.85;
+        }
+
         /* Legend overlay */
         .legend {
             position: fixed;
@@ -49,6 +59,9 @@
 </head>
 <body>
 
+<!-- Logo: replace src with your SENZAI logo filename -->
+<img class="logo" src="senzai-logo.png" alt="SENZAI" onerror="this.style.display='none'">
+
 <svg id="mindmap"></svg>
 
 <div class="legend">
@@ -62,7 +75,7 @@
     <span>⚡ Active</span>
 </div>
 
-<div class="hint">Scroll to zoom · Drag to pan · Click nodes to expand</div>
+<div class="hint">Scroll to zoom · Drag to pan · Click branch to expand</div>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script src="https://cdn.jsdelivr.net/npm/markmap-view"></script>
@@ -164,16 +177,88 @@ const md = `
     const transformer = new Transformer();
     const { root } = transformer.transform(md);
 
+    // Collapse all level-2+ nodes so we start with summary view
+    function foldBelow(node, level, maxLevel) {
+        if (!node.children) return;
+        if (level >= maxLevel) {
+            node.payload = node.payload || {};
+            node.payload.fold = 1;
+        }
+        node.children.forEach(c => foldBelow(c, level + 1, maxLevel));
+    }
+    foldBelow(root, 0, 2); // Show root + 6 branches only
+
     const mm = Markmap.create('#mindmap', {
-        initialExpandLevel: 1,
         colorFreezeLevel: 2,
         duration: 500,
-        maxWidth: 300,
+        maxWidth: 280,
         paddingX: 16,
     }, root);
 
-    // Fit to screen after render
-    setTimeout(() => mm.fit(), 100);
+    setTimeout(() => mm.fit(), 150);
+
+    // One-at-a-time expansion: when a branch expands, collapse siblings
+    const svg = document.getElementById('mindmap');
+    let lastClick = 0;
+
+    // Use MutationObserver to detect DOM changes after markmap renders,
+    // then attach our custom behavior
+    function setupOneAtATime() {
+        // Override the default click to add sibling-collapse logic
+        svg.addEventListener('click', (e) => {
+            const circle = e.target.closest('circle');
+            if (!circle) return;
+
+            // Debounce
+            const now = Date.now();
+            if (now - lastClick < 300) return;
+            lastClick = now;
+
+            // After markmap processes its own click, check the tree
+            setTimeout(() => {
+                // Find which level-1 branches are expanded and enforce one-at-a-time
+                if (!root.children) return;
+
+                // Count expanded level-1 nodes
+                const expanded = root.children.filter(c =>
+                    !c.payload || !c.payload.fold
+                );
+
+                // If more than one is expanded, keep only the most recently expanded
+                if (expanded.length > 1) {
+                    // The one that was just clicked is the last expanded
+                    // Collapse all except the last one toggled
+                    // We find it by checking which one changed state
+                    root.children.forEach(c => {
+                        c.payload = c.payload || {};
+                        c.payload.fold = 1;
+                    });
+                    // Expand the one that was just clicked
+                    // Find the node associated with the clicked circle
+                    const gNode = circle.closest('g.markmap-node');
+                    if (gNode) {
+                        const nodeData = gNode.__data__;
+                        if (nodeData && nodeData.data) {
+                            const clickedName = nodeData.data.content;
+                            const match = root.children.find(c => c.content === clickedName);
+                            if (match) {
+                                match.payload = match.payload || {};
+                                match.payload.fold = 0;
+                            }
+                        }
+                    }
+                    mm.setData(root);
+                    setTimeout(() => mm.fit(), 300);
+                } else {
+                    // Just auto-fit after any expand/collapse
+                    setTimeout(() => mm.fit(), 300);
+                }
+            }, 100);
+        }, true);
+    }
+
+    // Wait for initial render then set up
+    setTimeout(setupOneAtATime, 500);
 })();
 </script>
 </body>
