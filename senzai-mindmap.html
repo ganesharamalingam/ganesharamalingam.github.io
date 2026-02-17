@@ -81,103 +81,18 @@
 <script src="https://cdn.jsdelivr.net/npm/markmap-view"></script>
 <script src="https://cdn.jsdelivr.net/npm/markmap-lib"></script>
 <script>
-const md = `
-# SENZAI — Powering Infinite Services Delivery
-
-## SENZAI.Studio
-### 📅 Phase 1: Migrate from Emergent to Infinite — *Mar 15, 2026*
-### 📅 Phase 2: Increase Accuracy / Train the Model — *May 2026*
-### 👥 Studio Migration & Build Team — 6 FTE
-- 2 React Dev / 2 Node JS / 1 Manager / 1 Architect
-- 🔄 Migration from Emergent / Infosys tooling
-### 🎯 Agentic Development Framework
-- 👥 3 FTE (AI Dev) — SDLC Sub-Agent Build Blueprint
-- 👥 6 FTE (AI Dev) — Agentic AI Development Framework
-
-## SENZAI.Agents
-### 🎯 Functional Agentic AI Use Case Build
-- 🎯 Network — Provider Data Management
-- 🎯 Provider / Clinical Management
-- 🎯 Claims — Mostly on Cost Driver
-- 🎯 Hospital Management (Chart Summarization) — API / Sentara
-- *Based on FHIR Functional Experience*
-### 🎯 Phlox Specific Use Case
-- ONNT Upgrade
-- Demand Projects
-- Data Integration in DataBricks
-- 🔄 Testing — Shift from Automation to Agents
-### 🎯 SDLC Agentic AI Use Case
-- Replacement Prioritization
-- Knowledge Transition Framework
-- Knowledge Documentation
-- Tech Debt Framework
-### 🎯 Prod Support AI Use Case
-- Teams Building Additional Use Cases
-
-## Enablement Team
-### 👥 AI Architect Team
-- 👤 Muthu (New Hire) — Use Case
-- 👤 Guruprasath — Agentic Dev
-- 👤 Sandeep — AI Build/Test
-- 👤 Ajay — Infosys
-### 👥 Infra Enablement Team
-- 👤 Aravindhan / Siva + 2 New Additions
-- Focus on Infra Proficient Staff
-### 🛡️ Security / Governance / Observability
-- 👤 Reto + 2 New FTE
-- Governance & Security Layer — AGNTX Platform
-### 👥 Program Office
-- 👤 Gnani + 6 RPIs
-- Build / Use Cases / GTM
-### 👥 Training Office
-- AGNTX Developer Learning
-- Use Case View — See Zyler View
-### ⚡ SenzAI Testing
-- Integrated (UX / Agentic)
-
-## Client Enablement
-### 🔄 Localize AGNTX Studio to Client
-### 🔄 Integrate Client Knowledge Services
-- SharePoint / Services → SenzAI.Studio
-### 🎯 Build Client AECOE
-- Integrate SenzAI to governance tool
-### 🛡️ Client Governance
-- Based on Client Security Protocols
-
-## SENZAI.Branding
-### 📣 Use Case Demos
-- 👤 Retro / Ganesh — GTM Core Leaders
-- PT Programs → Agents → x Cost / SME Humans → Y Cost
-### 📣 Go-To-Market
-- Build AGNTX Collaterals
-- Refresh BD Materials — Powered by AGNTX
-- Build AECOE for Clients (Ideation to Realization)
-
-## Strategy & Next Steps
-### 🔄 Business Transformation View
-- How to Shift LH from SDLC to ADLC
-- Use this Training Material
-- SDLC View
-- How do you Evolve Client PTFs
-### 📅 Short Term
-- Leverage Training built to Train 65+
-- Training all Developers / Testers to Embrace ADLC
-### 📅 Long Term
-- SDLC → ADLC Shift
-- Build Use Case View
-### ⚡ Enhance AGNTX
-- Improve Accuracy of the Sub Agents
-### Skill Models — Agents vs FPs
-`;
-
 (async () => {
     const { Transformer } = markmap;
     const { Markmap } = markmap;
 
+    // Load content from external markdown file (easy to edit!)
+    const response = await fetch('senzai-content.md?v=' + Date.now());
+    const md = await response.text();
+
     const transformer = new Transformer();
     const { root } = transformer.transform(md);
 
-    // Collapse all level-2+ nodes so we start with summary view
+    // Collapse all level-1 branches so we start with summary view
     function foldBelow(node, level, maxLevel) {
         if (!node.children) return;
         if (level >= maxLevel) {
@@ -186,7 +101,7 @@ const md = `
         }
         node.children.forEach(c => foldBelow(c, level + 1, maxLevel));
     }
-    foldBelow(root, 0, 1); // Show root + 6 branch names only (their children hidden)
+    foldBelow(root, 0, 1);
 
     const mm = Markmap.create('#mindmap', {
         colorFreezeLevel: 2,
@@ -197,68 +112,46 @@ const md = `
 
     setTimeout(() => mm.fit(), 150);
 
-    // One-at-a-time expansion: when a branch expands, collapse siblings
+    // One-at-a-time expansion for level-1 branches
+    // Intercept in capture phase so we handle BEFORE markmap's own click
     const svg = document.getElementById('mindmap');
-    let lastClick = 0;
 
-    // Use MutationObserver to detect DOM changes after markmap renders,
-    // then attach our custom behavior
-    function setupOneAtATime() {
-        // Override the default click to add sibling-collapse logic
-        svg.addEventListener('click', (e) => {
-            const circle = e.target.closest('circle');
-            if (!circle) return;
+    svg.addEventListener('click', (e) => {
+        const circle = e.target.closest('circle');
+        if (!circle) return;
 
-            // Debounce
-            const now = Date.now();
-            if (now - lastClick < 300) return;
-            lastClick = now;
+        const gNode = circle.closest('g.markmap-node');
+        if (!gNode || !gNode.__data__) return;
 
-            // After markmap processes its own click, check the tree
-            setTimeout(() => {
-                // Find which level-1 branches are expanded and enforce one-at-a-time
-                if (!root.children) return;
+        const hierNode = gNode.__data__;
 
-                // Count expanded level-1 nodes
-                const expanded = root.children.filter(c =>
-                    !c.payload || !c.payload.fold
-                );
+        // Only intercept level-1 branch circle clicks
+        if (hierNode.depth !== 1) return;
 
-                // If more than one is expanded, keep only the most recently expanded
-                if (expanded.length > 1) {
-                    // The one that was just clicked is the last expanded
-                    // Collapse all except the last one toggled
-                    // We find it by checking which one changed state
-                    root.children.forEach(c => {
-                        c.payload = c.payload || {};
-                        c.payload.fold = 1;
-                    });
-                    // Expand the one that was just clicked
-                    // Find the node associated with the clicked circle
-                    const gNode = circle.closest('g.markmap-node');
-                    if (gNode) {
-                        const nodeData = gNode.__data__;
-                        if (nodeData && nodeData.data) {
-                            const clickedName = nodeData.data.content;
-                            const match = root.children.find(c => c.content === clickedName);
-                            if (match) {
-                                match.payload = match.payload || {};
-                                match.payload.fold = 0;
-                            }
-                        }
-                    }
-                    mm.setData(root);
-                    setTimeout(() => mm.fit(), 300);
-                } else {
-                    // Just auto-fit after any expand/collapse
-                    setTimeout(() => mm.fit(), 300);
-                }
-            }, 100);
-        }, true);
-    }
+        // Prevent markmap from double-toggling
+        e.stopPropagation();
+        e.preventDefault();
 
-    // Wait for initial render then set up
-    setTimeout(setupOneAtATime, 500);
+        // Read current state BEFORE we change anything
+        const clickedContent = hierNode.data.content;
+        const wasOpen = !(hierNode.data.payload && hierNode.data.payload.fold);
+
+        // Fold ALL level-1 branches
+        root.children.forEach(c => {
+            c.payload = c.payload || {};
+            c.payload.fold = 1;
+        });
+
+        // If this branch was closed, open it (toggle behavior)
+        if (!wasOpen) {
+            const match = root.children.find(c => c.content === clickedContent);
+            if (match) match.payload.fold = 0;
+        }
+        // If it was already open, all stay folded → back to summary
+
+        mm.setData(root);
+        setTimeout(() => mm.fit(), 300);
+    }, true); // capture phase
 })();
 </script>
 </body>

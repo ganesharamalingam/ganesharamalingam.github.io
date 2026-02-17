@@ -1,0 +1,86 @@
+# SENZAI — Powering Infinite Services Delivery
+
+## SENZAI.Studio
+### 📅 Phase 1: Migrate from Emergent to Infinite — *Mar 15, 2026*
+### 📅 Phase 2: Increase Accuracy / Train the Model — *May 2026*
+### 👥 Studio Migration & Build Team — 6 FTE
+- 2 React Dev / 2 Node JS / 1 Manager / 1 Architect
+- 🔄 Migration from Emergent / Infosys tooling
+### 🎯 Agentic Development Framework
+- 👥 3 FTE (AI Dev) — SDLC Sub-Agent Build Blueprint
+- 👥 6 FTE (AI Dev) — Agentic AI Development Framework
+
+## SENZAI.Agents
+### 🎯 Functional Agentic AI Use Case Build
+- 🎯 Network — Provider Data Management
+- 🎯 Provider / Clinical Management
+- 🎯 Claims — Mostly on Cost Driver
+- 🎯 Hospital Management (Chart Summarization) — API / Sentara
+- *Based on FHIR Functional Experience*
+### 🎯 Phlox Specific Use Case
+- ONNT Upgrade
+- Demand Projects
+- Data Integration in DataBricks
+- 🔄 Testing — Shift from Automation to Agents
+### 🎯 SDLC Agentic AI Use Case
+- Replacement Prioritization
+- Knowledge Transition Framework
+- Knowledge Documentation
+- Tech Debt Framework
+### 🎯 Prod Support AI Use Case
+- Teams Building Additional Use Cases
+
+## Enablement Team
+### 👥 AI Architect Team
+- 👤 Muthu (New Hire) — Use Case
+- 👤 Guruprasath — Agentic Dev
+- 👤 Sandeep — AI Build/Test
+- 👤 Ajay — Infosys
+### 👥 Infra Enablement Team
+- 👤 Aravindhan / Siva + 2 New Additions
+- Focus on Infra Proficient Staff
+### 🛡️ Security / Governance / Observability
+- 👤 Reto + 2 New FTE
+- Governance & Security Layer — AGNTX Platform
+### 👥 Program Office
+- 👤 Gnani + 6 RPIs
+- Build / Use Cases / GTM
+### 👥 Training Office
+- AGNTX Developer Learning
+- Use Case View — See Zyler View
+### ⚡ SenzAI Testing
+- Integrated (UX / Agentic)
+
+## Client Enablement
+### 🔄 Localize AGNTX Studio to Client
+### 🔄 Integrate Client Knowledge Services
+- SharePoint / Services → SenzAI.Studio
+### 🎯 Build Client AECOE
+- Integrate SenzAI to governance tool
+### 🛡️ Client Governance
+- Based on Client Security Protocols
+
+## SENZAI.Branding
+### 📣 Use Case Demos
+- 👤 Retro / Ganesh — GTM Core Leaders
+- PT Programs → Agents → x Cost / SME Humans → Y Cost
+### 📣 Go-To-Market
+- Build AGNTX Collaterals
+- Refresh BD Materials — Powered by AGNTX
+- Build AECOE for Clients (Ideation to Realization)
+
+## Strategy & Next Steps
+### 🔄 Business Transformation View
+- How to Shift LH from SDLC to ADLC
+- Use this Training Material
+- SDLC View
+- How do you Evolve Client PTFs
+### 📅 Short Term
+- Leverage Training built to Train 65+
+- Training all Developers / Testers to Embrace ADLC
+### 📅 Long Term
+- SDLC → ADLC Shift
+- Build Use Case View
+### ⚡ Enhance AGNTX
+- Improve Accuracy of the Sub Agents
+### Skill Models — Agents vs FPs
